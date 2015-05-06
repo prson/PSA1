@@ -15,8 +15,6 @@ public class SynchronousMachine extends ConductingEquipment{
 		this.memberOfGen=memberOfGen;
 		this.regControl=regControl;
 		this.memberOfEquipmentContainer=memberOfEquipmentContainer;
-		this.baseVoltage=baseVoltage;
-		
+		this.baseVoltage=baseVoltage;	
 	}
-
 }

@@ -12,4 +12,5 @@ public class GeneratingUnit extends ConductingEquipment{
 		minP = minPow;
 		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
 	}
+	
 }
