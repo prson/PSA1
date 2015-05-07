@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class CreateTableFirst {
+public class CreateTable {
 	
 	void createTables(Connection conn){
 		
