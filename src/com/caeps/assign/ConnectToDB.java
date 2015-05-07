@@ -10,6 +10,7 @@ public class ConnectToDB {
 	
 	// establishing a connection to the database
 	Connection establishConnection(String url, String username, String password) {
+		
 		try {
 			System.out.println("Loading driver...");
 			Class.forName("com.mysql.jdbc.Driver");
