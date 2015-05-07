@@ -26,10 +26,10 @@ public class BaseVoltage extends IdentifiedObject{
 		PreparedStatement preparedStmt;
 		try {
 			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from BaseVoltages");
+			preparedStmt.execute("DELETE FROM BaseVoltage");
 			NodeList subList = doc.getElementsByTagName("cim:BaseVoltage");
 			for (int i = 0; i < subList.getLength(); i++) {
-				query = "insert into BaseVoltages values (?,?,?)";
+				query = "INSERT INTO BaseVoltage VALUES (?,?,?)";
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd,"rdf:ID");
 				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
