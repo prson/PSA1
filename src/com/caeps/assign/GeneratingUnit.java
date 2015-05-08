@@ -22,7 +22,7 @@ public class GeneratingUnit extends ConductingEquipment{
 		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
 	}
 	
-	ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn){
+	ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers){
 		ArrayList<GeneratingUnit> generatingUnits=new ArrayList<GeneratingUnit>();
 		String query = null;
 		PreparedStatement preparedStmt;
@@ -45,7 +45,7 @@ public class GeneratingUnit extends ConductingEquipment{
 				preparedStmt.setDouble(4, minOperatingP);
 				preparedStmt.setString(5, memOfEquipmentContainer);
 				preparedStmt.execute();
-				EquipmentContainer subst = searchEquipmentContainer(equipmentcontainers, memOfEquipmentContainer);
+				EquipmentContainer subst = EquipmentContainer.searchEquipmentContainer(equipmentcontainers, memOfEquipmentContainer);
 				// System.out.println(baseVoltage.localName+subst.localName);
 				GeneratingUnit generatingUnitObj = new GeneratingUnit(refId,name, maxOperatingP, minOperatingP, subst);
 				generatingUnits.add(generatingUnitObj);
@@ -55,5 +55,16 @@ public class GeneratingUnit extends ConductingEquipment{
 			e.printStackTrace();
 		}
 		return generatingUnits;
+	}
+	
+	static GeneratingUnit searchGeneratingUnit(ArrayList<GeneratingUnit> ab, String rdfId) {
+		GeneratingUnit objectFound = null;
+		for (GeneratingUnit objIt : ab) {
+			if (objIt.getRdfID().equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
 	}
 }

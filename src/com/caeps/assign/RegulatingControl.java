@@ -47,4 +47,15 @@ public class RegulatingControl extends ConductingEquipment{
 		}
 		return regulatingControls;
 	}
+	
+	static RegulatingControl searchRegulatingControl(ArrayList<RegulatingControl> ab, String rdfId) {
+		RegulatingControl objectFound = null;
+		for (RegulatingControl objIt : ab) {
+			if (objIt.getRdfID().equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
+	}
 }

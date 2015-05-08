@@ -9,10 +9,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.ics.caps.PowerSystem.PowerTransformer;
-import com.ics.caps.PowerSystem.Substation;
-
-
 public class PowerTransformer extends ConductingEquipment{
 	public Substation memberOfSubstation;
 	
@@ -21,7 +17,7 @@ public class PowerTransformer extends ConductingEquipment{
 		this.memberOfSubstation=memberOfSubstation;
 	}
 	
-	ArrayList<PowerTransformer> getPowerTransformers(Document doc, Connection conn){
+	ArrayList<PowerTransformer> getPowerTransformers(Document doc, Connection conn, ArrayList<Substation> substations){
 		ArrayList<PowerTransformer> powertransformers=new ArrayList<PowerTransformer>();
 		String query = null;
 		PreparedStatement preparedStmt;
@@ -41,7 +37,7 @@ public class PowerTransformer extends ConductingEquipment{
 				preparedStmt.setString(2, name);
 				preparedStmt.setString(3, memOfSubstationId);
 				preparedStmt.execute();
-				Substation substation = searchSubstation(substations,memOfSubstationId);
+				Substation substation = Substation.searchSubstation(substations,memOfSubstationId);
 				PowerTransformer ab = new PowerTransformer(refId, name,substation);
 				powertransformers.add(ab);
 			}
@@ -52,5 +48,15 @@ public class PowerTransformer extends ConductingEquipment{
 		return powertransformers;
 	}
 
+	static PowerTransformer searchPowerTransformer(ArrayList<PowerTransformer> ab, String rdfId) {
+		PowerTransformer objectFound = null;
+		for (PowerTransformer objIt : ab) {
+			if (objIt.getRdfID().equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
+	}
 
 }

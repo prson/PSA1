@@ -11,6 +11,7 @@ import org.w3c.dom.NodeList;
 
 
 
+
 public class BaseVoltage extends IdentifiedObject{
 
 	public double nominalValue;
@@ -47,5 +48,16 @@ public class BaseVoltage extends IdentifiedObject{
 			e.printStackTrace();
 		}
 		return baseVoltages;
+	}
+	
+	static BaseVoltage searchBaseVoltage(ArrayList<BaseVoltage> ab, String rdfId) {
+		BaseVoltage objectFound = null;
+		for (BaseVoltage objIt : ab) {
+			if (objIt.rdfID.equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
 	}
 }

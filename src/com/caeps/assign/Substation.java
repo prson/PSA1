@@ -9,7 +9,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 public class Substation extends EquipmentContainer {
 
 	public String region_rdfID;
@@ -47,5 +46,17 @@ public class Substation extends EquipmentContainer {
 			e.printStackTrace();
 		}
 		return substations;
+	}
+	
+	static Substation searchSubstation(ArrayList<Substation> substationsList,
+			String rdfId) {
+		Substation objectFound = null;
+		for (Substation objIt : substationsList) {
+			if (objIt.rdfID.equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
 	}
 }
