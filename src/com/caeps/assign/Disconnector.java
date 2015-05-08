@@ -50,6 +50,7 @@ public class Disconnector extends ConductingEquipment {
 				BaseVoltage baseVoltage = BaseVoltage.searchBaseVoltage(baseVoltages,baseVoltageId);
 				Disconnector disconnectorObj = new Disconnector(refId, refName, st, equipmentContainer, baseVoltage);
 				disconnectors.add(disconnectorObj);
+				LoadXMLSQL.powerSystemResources.add(disconnectorObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

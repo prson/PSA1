@@ -49,6 +49,7 @@ public class GeneratingUnit extends ConductingEquipment{
 				// System.out.println(baseVoltage.localName+subst.localName);
 				GeneratingUnit generatingUnitObj = new GeneratingUnit(refId,name, maxOperatingP, minOperatingP, subst);
 				generatingUnits.add(generatingUnitObj);
+				LoadXMLSQL.powerSystemResources.add(generatingUnitObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

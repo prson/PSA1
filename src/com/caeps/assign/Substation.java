@@ -40,6 +40,8 @@ public class Substation extends EquipmentContainer {
 				preparedStmt.execute();
 				Substation ab = new Substation(refId, name, regionId);
 				substations.add(ab);
+				LoadXMLSQL.equipmentContainers.add(ab);
+				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

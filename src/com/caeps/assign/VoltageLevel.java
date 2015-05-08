@@ -48,6 +48,7 @@ public class VoltageLevel extends EquipmentContainer {
 				VoltageLevel ab = new VoltageLevel(refId, refName,baseVoltage, subst);
 				voltageLevels.add(ab);
 				LoadXMLSQL.equipmentContainers.add(ab);
+				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

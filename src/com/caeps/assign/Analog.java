@@ -9,7 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Analog extends ConductingEquipment {
+public class Analog extends IdentifiedObject {
 
 	public double normalValue;
 	public String measurementType;

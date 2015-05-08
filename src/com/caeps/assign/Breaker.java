@@ -51,6 +51,7 @@ public class Breaker extends ConductingEquipment {
 				BaseVoltage baseVoltage = BaseVoltage.searchBaseVoltage(baseVoltages,baseVoltageId);
 				Breaker breakerObj = new Breaker(refId, refName, st, equipmentContainer, baseVoltage);
 				breakers.add(breakerObj);
+				LoadXMLSQL.powerSystemResources.add(breakerObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

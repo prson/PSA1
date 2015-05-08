@@ -61,6 +61,7 @@ public class Load extends ConductingEquipment{
 				Load ab = new Load(refId, name, 
 						pfixed, qfixed, equipmentContainer, baseVoltage);
 				loads.add(ab);
+				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

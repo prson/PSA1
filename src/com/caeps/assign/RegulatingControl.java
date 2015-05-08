@@ -40,6 +40,7 @@ public class RegulatingControl extends ConductingEquipment{
 				preparedStmt.execute();
 				RegulatingControl ab = new RegulatingControl(refId, name,targetValue);
 				regulatingControls.add(ab);
+				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

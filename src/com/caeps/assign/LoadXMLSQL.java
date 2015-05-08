@@ -7,8 +7,9 @@ import org.w3c.dom.Document;
 
 public class LoadXMLSQL {
 	static ArrayList<EquipmentContainer> equipmentContainers=new ArrayList<EquipmentContainer>();
+	static ArrayList<PowerSystemResource> powerSystemResources=new ArrayList<PowerSystemResource>();
 	
-	public void loadXMLintoSQL(){
+	public static void main(){
 		String url="";
 		String username="";
 		String password="";

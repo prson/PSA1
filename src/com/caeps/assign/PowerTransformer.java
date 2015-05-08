@@ -40,6 +40,7 @@ public class PowerTransformer extends ConductingEquipment{
 				Substation substation = Substation.searchSubstation(substations,memOfSubstationId);
 				PowerTransformer ab = new PowerTransformer(refId, name,substation);
 				powertransformers.add(ab);
+				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
