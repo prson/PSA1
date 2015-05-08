@@ -16,12 +16,14 @@ public class CreateTable {
 			stmt = conn.createStatement();
 			String sql = "CREATE DATABASE IF NOT EXISTS PowerSystem";
 			stmt.executeUpdate(sql);
-			System.out.println("Database created successfully...");
+			System.out.println("Database created successfully");
 			
 			// Connect to the created database STUDENTS and create tables
 			stmt.executeUpdate("use PowerSystem");
 			
 			//Create table BaseVoltage
+			sql = "DROP TABLE IF EXISTS BaseVoltage";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS BaseVoltage"
 					+ "(rdfId VARCHAR(255) not NULL, " + 
 					"name VARCHAR(255), "
@@ -31,6 +33,8 @@ public class CreateTable {
 			System.out.println("Created table BaseVoltage in given database successfully");
 			
 			//Create table Substation
+			sql = "DROP TABLE IF EXISTS Substation";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Substation" +
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " +
@@ -40,6 +44,8 @@ public class CreateTable {
 			System.out.println("Created table Substation in given database successfully");
 			
 			//Create table VoltageLevel
+			sql = "DROP TABLE IF EXISTS VoltageLevel";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS VoltageLevel"+ 
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " + 
@@ -52,6 +58,8 @@ public class CreateTable {
 			System.out.println("Created table VoltageLevel in given database successfully");
 			
 			//Create table GeneratingUnit
+			sql = "DROP TABLE IF EXISTS GeneratingUnit";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS GeneratingUnit" +
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), "+
@@ -63,15 +71,19 @@ public class CreateTable {
 			System.out.println("Created table GeneratingUnit in given database successfully");
 			
 			// Create table RegulatingControl
-						sql = "CREATE TABLE IF NOT EXISTS RegulatingControl " +
-								"(rdfId VARCHAR(255), " +
-								"name VARCHAR(255), " +
-								"targetValue DECIMAL(7,2), " +
-								"PRIMARY KEY (rdfId))";
-						stmt.executeUpdate(sql);
-						System.out.println("Created table RegulatingControl successfully...");
+			sql = "DROP TABLE IF EXISTS RegulatingControl";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS RegulatingControl " +
+					"(rdfId VARCHAR(255), " +
+					"name VARCHAR(255), " +
+					"targetValue DECIMAL(7,2), " +
+					"PRIMARY KEY (rdfId))";
+			stmt.executeUpdate(sql);
+			System.out.println("Created table RegulatingControl successfully");
 			
 			// Create table SynchronousMachine
+			sql = "DROP TABLE IF EXISTS SynchronousMachine";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS SynchronousMachine" +
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " +
@@ -88,6 +100,8 @@ public class CreateTable {
 			System.out.println("Created table SynchronousMachine in given database successfully");
 			
 			// Create table Analog
+			sql = "DROP TABLE IF EXISTS Analog";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Analog " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
@@ -96,9 +110,11 @@ public class CreateTable {
 					"memberRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Analog successfully...");
+			System.out.println("Created table Analog successfully");
 
 			// Create table Disconnector
+			sql = "DROP TABLE IF EXISTS Disconnector";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Disconnector " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
@@ -108,9 +124,11 @@ public class CreateTable {
 					"PRIMARY KEY (rdfId), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Disconnector successfully...");
+			System.out.println("Created table Disconnector successfully");
 
 			// Create table Breaker
+			sql = "DROP TABLE IF EXISTS Breaker";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Breaker " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
@@ -120,18 +138,22 @@ public class CreateTable {
 					"PRIMARY KEY (rdfId), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Breaker successfully...");
+			System.out.println("Created table Breaker successfully");
 			
 			// Create table PowerTransformer
+			sql = "DROP TABLE IF EXISTS PowerTransformer";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS PowerTransformer " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
 					"equipmentRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table PowerTransformer successfully...");
+			System.out.println("Created table PowerTransformer successfully");
 
 			// Create table TransformerWinding
+			sql = "DROP TABLE IF EXISTS TransformerWinding";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS TransformerWinding " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
@@ -143,9 +165,11 @@ public class CreateTable {
 					"FOREIGN KEY (transformerRdfID) REFERENCES PowerTransformer(rdfID), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table TransformerWinding successfully...");
+			System.out.println("Created table TransformerWinding successfully");
 
 			// Create table Load
+			sql = "DROP TABLE IF EXISTS Load";
+			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Load " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
@@ -156,7 +180,7 @@ public class CreateTable {
 					"PRIMARY KEY (rdfId), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Load successfully...");
+			System.out.println("Created table Load successfully");
 			
 		
 		} catch (SQLException e) {
