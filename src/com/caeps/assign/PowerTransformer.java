@@ -17,7 +17,7 @@ public class PowerTransformer extends ConductingEquipment{
 		this.memberOfSubstation=memberOfSubstation;
 	}
 	
-	ArrayList<PowerTransformer> getPowerTransformers(Document doc, Connection conn, ArrayList<Substation> substations){
+	static ArrayList<PowerTransformer> getPowerTransformers(Document doc, Connection conn, ArrayList<Substation> substations){
 		ArrayList<PowerTransformer> powertransformers=new ArrayList<PowerTransformer>();
 		String query = null;
 		PreparedStatement preparedStmt;

@@ -28,7 +28,7 @@ public class SynchronousMachine extends ConductingEquipment{
 		this.baseVoltage=baseVoltage;	
 	}
 	
-	ArrayList<SynchronousMachine> getSynchronousMachine(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages, ArrayList<GeneratingUnit> generatingUnits, ArrayList<RegulatingControl> regulatingControls){
+	static ArrayList<SynchronousMachine> getSynchronousMachine(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages, ArrayList<GeneratingUnit> generatingUnits, ArrayList<RegulatingControl> regulatingControls){
 		ArrayList<SynchronousMachine> synchronousMachines=new ArrayList<SynchronousMachine>();
 		String query = null;
 		PreparedStatement preparedStmt;

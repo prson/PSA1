@@ -22,7 +22,7 @@ public class Breaker extends ConductingEquipment {
 		this.baseVoltage = baseVoltage;
 	}
 
-	ArrayList<Breaker> getBreakers(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
+	static ArrayList<Breaker> getBreakers(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
 
 		ArrayList<Breaker> breakers = new ArrayList<Breaker>();
 		String query = null;

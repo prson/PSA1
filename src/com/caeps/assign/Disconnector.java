@@ -21,7 +21,7 @@ public class Disconnector extends ConductingEquipment {
 		this.baseVoltage = baseVoltage;
 	}
 
-	ArrayList<Disconnector> getDisconnectors(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
+	static ArrayList<Disconnector> getDisconnectors(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
 
 		ArrayList<Disconnector> disconnectors = new ArrayList<Disconnector>();
 		String query = null;

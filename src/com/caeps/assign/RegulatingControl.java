@@ -19,7 +19,7 @@ public class RegulatingControl extends ConductingEquipment{
 		this.targetValue=targetValue;
 	}
 	
-	ArrayList<RegulatingControl> getRegulatingControl(Document doc, Connection conn){
+	static ArrayList<RegulatingControl> getRegulatingControl(Document doc, Connection conn){
 		ArrayList<RegulatingControl> regulatingControls=new ArrayList<RegulatingControl>();
 		String query = null;
 		PreparedStatement preparedStmt;

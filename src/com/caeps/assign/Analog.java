@@ -22,7 +22,7 @@ public class Analog extends ConductingEquipment {
 		this.memberOfPowerSystemResource = memberOfPowerSystemResource;
 	}
 
-	ArrayList<Analog> getAnalogs(Document doc, Connection conn, ArrayList<PowerSystemResource> powerSystemResources) {
+	static ArrayList<Analog> getAnalogs(Document doc, Connection conn, ArrayList<PowerSystemResource> powerSystemResources) {
 
 		ArrayList<Analog> analogs = new ArrayList<Analog>();
 		String query = null;

@@ -21,7 +21,7 @@ public class BaseVoltage extends IdentifiedObject{
 		nominalValue = nomVal;
 	}
 	
-	ArrayList<BaseVoltage> getBaseVoltages(Document doc, Connection conn){
+	static ArrayList<BaseVoltage> getBaseVoltages(Document doc, Connection conn){
 		ArrayList<BaseVoltage> baseVoltages=new ArrayList<BaseVoltage>();
 		String query = null;
 		PreparedStatement preparedStmt;

@@ -22,7 +22,7 @@ public class GeneratingUnit extends ConductingEquipment{
 		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
 	}
 	
-	ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers){
+	static ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers){
 		ArrayList<GeneratingUnit> generatingUnits=new ArrayList<GeneratingUnit>();
 		String query = null;
 		PreparedStatement preparedStmt;

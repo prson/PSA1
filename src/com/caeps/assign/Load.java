@@ -24,7 +24,7 @@ public class Load extends ConductingEquipment{
 		this.baseVoltage=baseVoltage;
 	}
 	
-	ArrayList<Load> getLoad(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages){
+	static ArrayList<Load> getLoad(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<Load> loads=new ArrayList<Load>();
 		String query = null;
 		PreparedStatement preparedStmt;

@@ -18,7 +18,7 @@ public class Substation extends EquipmentContainer {
 		region_rdfID = region_rdfId;
 	}
 	
-	ArrayList<Substation> getSubstations(Document doc, Connection conn){
+	static ArrayList<Substation> getSubstations(Document doc, Connection conn){
 		ArrayList<Substation> substations=new ArrayList<Substation>();
 		String query = null;
 		PreparedStatement preparedStmt;

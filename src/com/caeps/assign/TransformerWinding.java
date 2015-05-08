@@ -25,7 +25,7 @@ public class TransformerWinding  extends ConductingEquipment{
 		this.baseVoltage=baseVoltage;
 	}
 	
-	ArrayList<TransformerWinding> getTransformerWinding(Document doc, Connection conn, ArrayList<PowerTransformer> powertransformers, ArrayList<BaseVoltage> baseVoltages){
+	static ArrayList<TransformerWinding> getTransformerWinding(Document doc, Connection conn, ArrayList<PowerTransformer> powertransformers, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<TransformerWinding> transformerWindings=new ArrayList<TransformerWinding>();
 		String query = null;
 		PreparedStatement preparedStmt;

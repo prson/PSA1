@@ -20,7 +20,7 @@ public class VoltageLevel extends EquipmentContainer {
 		this.memberOfSubstation = memberOfSubstation;
 	}
 	
-	ArrayList<VoltageLevel> getVoltageLevel(Document doc, Connection conn, ArrayList<Substation> substations, ArrayList<BaseVoltage> baseVoltages){
+	static ArrayList<VoltageLevel> getVoltageLevel(Document doc, Connection conn, ArrayList<Substation> substations, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<VoltageLevel> voltageLevels=new ArrayList<VoltageLevel>();
 		String query = null;
 		PreparedStatement preparedStmt;
@@ -47,6 +47,7 @@ public class VoltageLevel extends EquipmentContainer {
 				// System.out.println(baseVoltage.localName+subst.localName);
 				VoltageLevel ab = new VoltageLevel(refId, refName,baseVoltage, subst);
 				voltageLevels.add(ab);
+				LoadXMLSQL.equipmentContainers.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
