@@ -24,15 +24,16 @@ public class RegulatingControl extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from regulatingControls");
+			query="DELETE FROM regulatingControl";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:RegulatingControl");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
 				Double targetValue = Double.parseDouble(GetParam.getParam(nd,"cim:RegulatingControl.targetValue"));
-				query = "insert into regulatingControls values (?,?,?)";
+				query = "insert into regulatingControl values (?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);

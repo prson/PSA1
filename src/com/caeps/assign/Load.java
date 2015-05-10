@@ -29,8 +29,9 @@ public class Load extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from nonconformloads");
+			query="DELETE FROM Loads";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:NonConformLoad");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
@@ -45,7 +46,7 @@ public class Load extends ConductingEquipment{
 						1);
 				String baseVoltageId = GetParam.getParam(nd,
 						"cim:ConductingEquipment.BaseVoltage").substring(1);
-				query = "insert into nonconformloads values (?,?,?,?,?,?,?,?,?)";
+				query = "insert into Loads values (?,?,?,?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);

@@ -24,11 +24,13 @@ public class BaseVoltage extends IdentifiedObject{
 	static ArrayList<BaseVoltage> getBaseVoltages(Document doc, Connection conn){
 		ArrayList<BaseVoltage> baseVoltages=new ArrayList<BaseVoltage>();
 		String query = null;
-		PreparedStatement preparedStmt;
+		PreparedStatement preparedStmt=null;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM BaseVoltage");
+//			query="DELETE FROM BaseVoltage";
+//			preparedStmt=conn.prepareStatement(query);
+//			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:BaseVoltage");
+			System.out.println(subList.getLength());
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO BaseVoltage VALUES (?,?,?)";
 				Node nd = subList.item(i);

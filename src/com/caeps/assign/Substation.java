@@ -24,8 +24,9 @@ public class Substation extends EquipmentContainer {
 		PreparedStatement preparedStmt;
 		NodeList subList;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from Substation");
+			query="DELETE FROM Substation";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			subList = doc.getElementsByTagName("cim:Substation");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);

@@ -26,8 +26,10 @@ public class VoltageLevel extends EquipmentContainer {
 		PreparedStatement preparedStmt;
 		NodeList subList;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM VoltageLevel");
+			query="DELETE FROM VoltageLevel";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
+			
 			subList = doc.getElementsByTagName("cim:VoltageLevel");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);

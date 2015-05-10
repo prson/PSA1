@@ -14,7 +14,9 @@ public class CreateTable {
 			
 			//create Database
 			stmt = conn.createStatement();
-			String sql = "CREATE DATABASE IF NOT EXISTS PowerSystem";
+			String sql = "DROP DATABASE IF EXISTS PowerSystem";
+			stmt.executeUpdate(sql);
+			sql = "CREATE DATABASE IF NOT EXISTS PowerSystem";
 			stmt.executeUpdate(sql);
 			System.out.println("Database created successfully");
 			
@@ -157,8 +159,8 @@ public class CreateTable {
 			sql = "CREATE TABLE IF NOT EXISTS TransformerWinding " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
-					"r DECIMAL(5,4), " +
-					"x DECIMAL(5,4), " +
+					"r DECIMAL(7,4), " +
+					"x DECIMAL(7,4), " +
 					"transformerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
@@ -168,9 +170,9 @@ public class CreateTable {
 			System.out.println("Created table TransformerWinding successfully");
 
 			// Create table Load
-			sql = "DROP TABLE IF EXISTS Load";
+			sql = "DROP TABLE IF EXISTS Loads";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS Load " +
+			sql = "CREATE TABLE IF NOT EXISTS Loads " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
 					"pFixed DECIMAL(7,2), " +
@@ -180,7 +182,7 @@ public class CreateTable {
 					"PRIMARY KEY (rdfId), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Load successfully");
+			System.out.println("Created table Loads successfully");
 			
 		
 		} catch (SQLException e) {

@@ -28,17 +28,18 @@ public class Disconnector extends ConductingEquipment {
 		PreparedStatement preparedStmt;
 		
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM Disconnector");
+			query="DELETE FROM Disconnector";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:Disconnector");
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO Disconnector VALUES (?,?,?,?,?)";
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd,"rdf:ID");
 				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
-				String st = GetParam.getParam(nd,"cim:Disconnector.state");
-				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.memberOfEquipmentContainer").substring(1);
-				String baseVoltageId = GetParam.getParam(nd,"cim:ConductingEquipment.baseVoltage").substring(1);
+				String st = GetParam.getParam(nd,"cim:Switch.normalOpen");
+				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
+				String baseVoltageId = GetParam.getParam(nd,"cim:ConductingEquipment.BaseVoltage").substring(1);
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, refName);

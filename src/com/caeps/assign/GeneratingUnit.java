@@ -27,8 +27,9 @@ public class GeneratingUnit extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM GeneratingUnit");
+			query="DELETE FROM GeneratingUnit";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:ThermalGeneratingUnit");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
@@ -37,7 +38,7 @@ public class GeneratingUnit extends ConductingEquipment{
 				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
 				Double maxOperatingP = Double.parseDouble(GetParam.getParam(nd,"cim:GeneratingUnit.maxOperatingP"));
 				Double minOperatingP = Double.parseDouble(GetParam.getParam(nd,"cim:GeneratingUnit.minOperatingP"));
-				query = "insert into ThermalGenUnits values (?,?,?,?,?)";
+				query = "insert into GeneratingUnit values (?,?,?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);

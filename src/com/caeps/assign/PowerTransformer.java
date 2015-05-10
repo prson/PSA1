@@ -23,15 +23,16 @@ public class PowerTransformer extends ConductingEquipment{
 		PreparedStatement preparedStmt;
 		NodeList subList;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from PowerTransformer");
+			query="DELETE FROM PowerTransformer";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			subList = doc.getElementsByTagName("cim:PowerTransformer");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
 				String memOfSubstationId = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
-				query = "insert into powerTransformers values (?,?,?)";
+				query = "insert into powerTransformer values (?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);

@@ -33,8 +33,10 @@ public class SynchronousMachine extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from synchronousMachines");
+			query="DELETE FROM synchronousMachine";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
+			
 			NodeList subList = doc.getElementsByTagName("cim:SynchronousMachine");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
@@ -46,19 +48,19 @@ public class SynchronousMachine extends ConductingEquipment{
 				Double ratedS = Double.parseDouble(GetParam.getParam(nd,
 						"cim:SynchronousMachine.ratedS"));
 				String memOfGenUnitId = GetParam.getParam(nd,
-						"cim:SynchronousMachine.MemberOf_GeneratingUnit");
+						"cim:SynchronousMachine.MemberOf_GeneratingUnit").substring(1);
 				String regulatingControlId = GetParam.getParam(nd,
-						"cim:RegulatingCondEq.RegulatingControl");
+						"cim:RegulatingCondEq.RegulatingControl").substring(1);
 				String baseVoltageId = GetParam.getParam(nd,
 						"cim:ConductingEquipment.BaseVoltage").substring(1);
-				query = "insert into synchronousMachines values (?,?,?,?,?,?,?)";
+				query = "insert into synchronousMachine values (?,?,?,?,?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);
-				preparedStmt.setString(3, memOfEquipmentContainer);
-				preparedStmt.setDouble(4, ratedS);
-				preparedStmt.setString(5, memOfGenUnitId);
-				preparedStmt.setString(6, regulatingControlId);
+				preparedStmt.setString(6, memOfEquipmentContainer);
+				preparedStmt.setDouble(3, ratedS);
+				preparedStmt.setString(4, memOfGenUnitId);
+				preparedStmt.setString(5, regulatingControlId);
 				preparedStmt.setString(7, baseVoltageId);
 				preparedStmt.execute();
 				EquipmentContainer voltLevel = EquipmentContainer.searchEquipmentContainer(

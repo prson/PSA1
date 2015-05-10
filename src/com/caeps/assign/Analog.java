@@ -29,8 +29,9 @@ public class Analog extends IdentifiedObject {
 		PreparedStatement preparedStmt;
 		
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM Analog");
+			query="DELETE FROM Analog";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:Analog");
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO Analog VALUES (?,?,?,?,?)";
@@ -38,8 +39,8 @@ public class Analog extends IdentifiedObject {
 				String refId = GetParam.getParam(nd,"rdf:ID");
 				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
 				double normalVal = Double.parseDouble(GetParam.getParam(nd,"cim:Analog.normalValue"));
-				String measType = GetParam.getParam(nd,"cim:Analog.measurementType");
-				String memOfPowerSysResId = GetParam.getParam(nd,"cim:Analog.memberOfPowerSystemResource");
+				String measType = GetParam.getParam(nd,"cim:Measurement.measurementType");
+				String memOfPowerSysResId = GetParam.getParam(nd,"cim:Measurement.MemberOf_PSR");
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, refName);

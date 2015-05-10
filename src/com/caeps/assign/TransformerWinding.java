@@ -30,8 +30,10 @@ public class TransformerWinding  extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("delete from TransformerWinding");
+			query="DELETE FROM TransformerWinding";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
+			
 			NodeList subList = doc.getElementsByTagName("cim:TransformerWinding");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);

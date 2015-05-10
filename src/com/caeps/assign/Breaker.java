@@ -29,17 +29,18 @@ public class Breaker extends ConductingEquipment {
 		PreparedStatement preparedStmt;
 		
 		try {
-			preparedStmt = conn.prepareStatement(query);
-			preparedStmt.execute("DELETE FROM Breaker");
+			query="DELETE FROM Breaker";
+			preparedStmt=conn.prepareStatement(query);
+			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:Breaker");
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO Breaker VALUES (?,?,?,?,?)";
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd,"rdf:ID");
 				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
-				String st = GetParam.getParam(nd,"cim:Breaker.state");
-				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.memberOfEquipmentContainer").substring(1);
-				String baseVoltageId = GetParam.getParam(nd,"cim:ConductingEquipment.baseVoltage").substring(1);
+				String st = GetParam.getParam(nd,"cim:Switch.normalOpen");
+				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
+				String baseVoltageId = GetParam.getParam(nd,"cim:ConductingEquipment.BaseVoltage").substring(1);
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, refName);
