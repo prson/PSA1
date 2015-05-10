@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 public class LoadXMLSQL {
 	static ArrayList<EquipmentContainer> equipmentContainers=new ArrayList<EquipmentContainer>();
 	static ArrayList<PowerSystemResource> powerSystemResources=new ArrayList<PowerSystemResource>();
+	static ArrayList<ConductingEquipment> conductingEquipments=new ArrayList<ConductingEquipment>();
 	
 	public static void main(String args[]){
 		Connection conn = null;
@@ -32,6 +33,14 @@ public class LoadXMLSQL {
 		ArrayList<Breaker> breakers=Breaker.getBreakers(doc, conn, equipmentContainers, baseVoltages);
 		ArrayList<Disconnector> disconnectors=Disconnector.getDisconnectors(doc, conn, equipmentContainers, baseVoltages);
 		ArrayList<Analog> analogs=Analog.getAnalogs(doc, conn, powerSystemResources);
+		
+		
+		ArrayList<ACLineSegment> lineSegments=ACLineSegment.getLineSegments(doc, conn, equipmentContainers, baseVoltages);
+		ArrayList<ConnectivityNode> connectivityNodes=ConnectivityNode.getConnectivityNodes(doc, conn, voltageLevels);
+		ArrayList<Terminal> terminals=Terminal.getTerminals(doc, conn, conductingEquipments, connectivityNodes);
+		
+		
+		
 		}
 		finally{
 			try {

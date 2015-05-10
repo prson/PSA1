@@ -58,4 +58,15 @@ public class VoltageLevel extends EquipmentContainer {
 		}
 		return voltageLevels;
 	}
+	
+	static VoltageLevel searchVoltageLevel (ArrayList<VoltageLevel> ab, String rdfId) {
+		VoltageLevel objectFound = null;
+		for (VoltageLevel objIt : ab) {
+			if (objIt.rdfID.equals(rdfId)) {
+				objectFound = objIt;
+				break;
+			}
+		}
+		return objectFound;
+	}
 }

@@ -53,6 +53,7 @@ public class Breaker extends ConductingEquipment {
 				Breaker breakerObj = new Breaker(refId, refName, st, equipmentContainer, baseVoltage);
 				breakers.add(breakerObj);
 				LoadXMLSQL.powerSystemResources.add(breakerObj);
+				LoadXMLSQL.conductingEquipments.add(breakerObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
