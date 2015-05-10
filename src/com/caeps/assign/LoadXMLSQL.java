@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.w3c.dom.Document;
 
 public class LoadXMLSQL {
@@ -14,6 +17,8 @@ public class LoadXMLSQL {
 	public static void main(String args[]){
 		Connection conn = null;
 		try{
+			
+			
 		String url="jdbc:mysql://localhost:3306/";
 		String username="root";
 		String password="root";

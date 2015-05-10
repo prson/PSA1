@@ -42,6 +42,7 @@ public class RegulatingControl extends ConductingEquipment{
 				RegulatingControl ab = new RegulatingControl(refId, name,targetValue);
 				regulatingControls.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);
+				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

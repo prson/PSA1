@@ -42,6 +42,7 @@ public class PowerTransformer extends ConductingEquipment{
 				PowerTransformer ab = new PowerTransformer(refId, name,substation);
 				powertransformers.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);
+				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

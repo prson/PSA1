@@ -63,6 +63,7 @@ public class TransformerWinding  extends ConductingEquipment{
 						baseVoltageId);
 				TransformerWinding ab = new TransformerWinding(refId, name,r, x, powerTrans, baseVoltage);
 				LoadXMLSQL.powerSystemResources.add(ab);
+				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

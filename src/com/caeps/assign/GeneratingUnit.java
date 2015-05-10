@@ -51,6 +51,7 @@ public class GeneratingUnit extends ConductingEquipment{
 				GeneratingUnit generatingUnitObj = new GeneratingUnit(refId,name, maxOperatingP, minOperatingP, subst);
 				generatingUnits.add(generatingUnitObj);
 				LoadXMLSQL.powerSystemResources.add(generatingUnitObj);
+				LoadXMLSQL.conductingEquipments.add(generatingUnitObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

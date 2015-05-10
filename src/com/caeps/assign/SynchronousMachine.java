@@ -77,6 +77,7 @@ public class SynchronousMachine extends ConductingEquipment{
 						baseVoltage);
 				synchronousMachines.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);
+				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -52,6 +52,7 @@ public class Disconnector extends ConductingEquipment {
 				Disconnector disconnectorObj = new Disconnector(refId, refName, st, equipmentContainer, baseVoltage);
 				disconnectors.add(disconnectorObj);
 				LoadXMLSQL.powerSystemResources.add(disconnectorObj);
+				LoadXMLSQL.conductingEquipments.add(disconnectorObj);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
