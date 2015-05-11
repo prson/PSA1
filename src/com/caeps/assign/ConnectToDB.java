@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import org.apache.log4j.Logger;
 
 public class ConnectToDB {
-	Logger logger = Logger.getLogger(LoadXMLSQL.class);
+	Logger logger = Logger.getLogger(ConnectToDB.class);
 
 	public ConnectToDB() {
 	}
