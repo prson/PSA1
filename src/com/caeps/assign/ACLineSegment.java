@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -22,6 +23,7 @@ public class ACLineSegment extends ConductingEquipment {
 	public double x0;
 	public EquipmentContainer memberOfEquipmentContainer;
 	public BaseVoltage baseVoltage;
+	static Logger logger = Logger.getLogger(LoadXMLSQL.class);
 
 	public ACLineSegment(String rdfId, String name, String localName,
 			double gch, double bch, double r, double x, double g0ch,
@@ -46,8 +48,9 @@ public class ACLineSegment extends ConductingEquipment {
 	static ArrayList<ACLineSegment> getLineSegments(Document doc,
 			Connection conn, ArrayList<EquipmentContainer> equipmentcontainers,
 			ArrayList<BaseVoltage> baseVoltages) {
+		
 		ArrayList<ACLineSegment> linesegments = new ArrayList<ACLineSegment>();
-		System.out.println("AC Line Segments::");
+		logger.debug("Loading AC Line Segments from the file");
 		NodeList subList = doc.getElementsByTagName("cim:ACLineSegment");
 		for (int i = 0; i < subList.getLength(); i++) {
 			Node nd = subList.item(i);
@@ -88,6 +91,7 @@ public class ACLineSegment extends ConductingEquipment {
 			linesegments.add(ab);
 			LoadXMLSQL.conductingEquipments.add(ab);
 		}
+		logger.debug("Read the ac line segment contents from the XML file");
 		return linesegments;
 	}
 }

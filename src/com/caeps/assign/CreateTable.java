@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 public class CreateTable {
+	static Logger logger = Logger.getLogger(CreateTable.class);
 	
 	void createTables(Connection conn){
 		
-		System.out.println("Creating database...");
+		logger.debug("Creating database..."+conn.toString());
 		Statement stmt;
 		try {
 			
@@ -18,7 +21,7 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE DATABASE IF NOT EXISTS PowerSystem";
 			stmt.executeUpdate(sql);
-			System.out.println("Database created successfully");
+			logger.debug("Database created successfully");
 			
 			// Connect to the created database STUDENTS and create tables
 			stmt.executeUpdate("use PowerSystem");
@@ -32,7 +35,7 @@ public class CreateTable {
 					+ " nominalValue VARCHAR(255), " + 
 					" PRIMARY KEY ( rdfId ))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table BaseVoltage in given database successfully");
+			logger.debug("Created table BaseVoltage in given database successfully");
 			
 			//Create table Substation
 			sql = "DROP TABLE IF EXISTS Substation";
@@ -43,7 +46,7 @@ public class CreateTable {
 					" regionRDFId VARCHAR(255), " + 
 					" PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Substation in given database successfully");
+			logger.debug("Created table Substation in given database successfully");
 			
 			//Create table VoltageLevel
 			sql = "DROP TABLE IF EXISTS VoltageLevel";
@@ -57,7 +60,27 @@ public class CreateTable {
 					"FOREIGN KEY (substationRDFId) REFERENCES Substation(rdfId),"+
 					"FOREIGN KEY (baseVoltageRDFId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table VoltageLevel in given database successfully");
+			logger.debug("Created table VoltageLevel in given database successfully");
+			
+			//Create table EquipmentContainer
+			sql = "DROP TABLE IF EXISTS EquipmentContainer";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS EquipmentContainer"+ 
+					"(rdfId VARCHAR(255) not NULL, " + 
+					" name VARCHAR(255), " + 
+					" PRIMARY KEY (rdfId))";
+			stmt.executeUpdate(sql);
+			logger.debug("Created table Equipment Container in given database successfully");
+			
+			//Create table PowerSystemResource
+			sql = "DROP TABLE IF EXISTS PowerSystemResource";
+			stmt.executeUpdate(sql);
+			sql = "CREATE TABLE IF NOT EXISTS PowerSystemResource"+ 
+					"(rdfId VARCHAR(255) not NULL, " + 
+					" name VARCHAR(255), " + 
+					" PRIMARY KEY (rdfId))";
+			stmt.executeUpdate(sql);
+			logger.debug("Created table PowerSystemResource in given database successfully");
 			
 			//Create table GeneratingUnit
 			sql = "DROP TABLE IF EXISTS GeneratingUnit";
@@ -67,10 +90,11 @@ public class CreateTable {
 					" name VARCHAR(255), "+
 					" maxP DECIMAL(7,2), " + 
 					"minP DECIMAL(7,2), "+ 
-					"baseVoltageRDFId VARCHAR(255),"+
+					"equimentContainerId VARCHAR(255),"+
+					"FOREIGN KEY (equimentContainerId) REFERENCES EquipmentContainer(rdfId),"+
 					" PRIMARY KEY ( rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table GeneratingUnit in given database successfully");
+			logger.debug("Created table GeneratingUnit in given database successfully");
 			
 			// Create table RegulatingControl
 			sql = "DROP TABLE IF EXISTS RegulatingControl";
@@ -81,7 +105,7 @@ public class CreateTable {
 					"targetValue DECIMAL(7,2), " +
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table RegulatingControl successfully");
+			logger.debug("Created table RegulatingControl successfully");
 			
 			// Create table SynchronousMachine
 			sql = "DROP TABLE IF EXISTS SynchronousMachine";
@@ -92,14 +116,15 @@ public class CreateTable {
 					" ratedS DECIMAL(7,2), " +
 					"GenratingUnitRDFId VARCHAR(255),"+
 					"RegControlRDFId VARCHAR(255),"+
-					"EquipmentRDFId VARCHAR(255),"+	
+					"EquipmentContainerRdfId VARCHAR(255),"+	
 					"BaseVoltageRDFId VARCHAR(255),"+ 
 					" PRIMARY KEY ( rdfId),"+
 					"FOREIGN KEY (GenratingUnitRDFId) REFERENCES GeneratingUnit(rdfId),"+
 					"FOREIGN KEY (RegControlRDFId) REFERENCES RegulatingControl(rdfId),"+
+					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (BaseVoltageRDFId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table SynchronousMachine in given database successfully");
+			logger.debug("Created table SynchronousMachine in given database successfully");
 			
 			// Create table Analog
 			sql = "DROP TABLE IF EXISTS Analog";
@@ -110,9 +135,10 @@ public class CreateTable {
 					"normalValue DECIMAL(7,2), " +
 					"measurementType VARCHAR(255), " +
 					"memberRdfId VARCHAR(255), " +
+					"FOREIGN KEY (memberRdfId) REFERENCES PowerSystemResource(rdfId),"+
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Analog successfully");
+			logger.debug("Created table Analog successfully");
 
 			// Create table Disconnector
 			sql = "DROP TABLE IF EXISTS Disconnector";
@@ -126,7 +152,7 @@ public class CreateTable {
 					"PRIMARY KEY (rdfId), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Disconnector successfully");
+			logger.debug("Created table Disconnector successfully");
 
 			// Create table Breaker
 			sql = "DROP TABLE IF EXISTS Breaker";
@@ -135,12 +161,13 @@ public class CreateTable {
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
 					"state VARCHAR(255), " +
-					"equipmentRdfId VARCHAR(255), " +
+					"EquipmentContainerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
+					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Breaker successfully");
+			logger.debug("Created table Breaker successfully");
 			
 			// Create table PowerTransformer
 			sql = "DROP TABLE IF EXISTS PowerTransformer";
@@ -148,10 +175,11 @@ public class CreateTable {
 			sql = "CREATE TABLE IF NOT EXISTS PowerTransformer " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
-					"equipmentRdfId VARCHAR(255), " +
+					"EquipmentContainerRdfId VARCHAR(255), " +
+					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table PowerTransformer successfully");
+			logger.debug("Created table PowerTransformer successfully");
 
 			// Create table TransformerWinding
 			sql = "DROP TABLE IF EXISTS TransformerWinding";
@@ -167,7 +195,7 @@ public class CreateTable {
 					"FOREIGN KEY (transformerRdfID) REFERENCES PowerTransformer(rdfID), " +
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table TransformerWinding successfully");
+			logger.debug("Created table TransformerWinding successfully");
 
 			// Create table Load
 			sql = "DROP TABLE IF EXISTS Loads";
@@ -177,17 +205,19 @@ public class CreateTable {
 					"name VARCHAR(255), " +
 					"pFixed DECIMAL(7,2), " +
 					"qFixed DECIMAL(7,2), " +
-					"equipmentRdfId VARCHAR(255), " +
+					"EquipmentContainerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
+					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
-			System.out.println("Created table Loads successfully");
+			logger.debug("Created table Loads successfully");
 			
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error while creating database and tables",e);
+//			e.printStackTrace();
 		}
 		
 	}

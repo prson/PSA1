@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,6 +15,7 @@ public class Analog extends IdentifiedObject {
 	public double normalValue;
 	public String measurementType;
 	public PowerSystemResource memberOfPowerSystemResource;
+	static Logger logger = Logger.getLogger(Analog.class);
 	
 	public Analog(String rdfId, String name, double normalValue, String measurementType, PowerSystemResource memberOfPowerSystemResource) {
 		super(rdfId, name);
@@ -40,7 +42,7 @@ public class Analog extends IdentifiedObject {
 				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
 				double normalVal = Double.parseDouble(GetParam.getParam(nd,"cim:Analog.normalValue"));
 				String measType = GetParam.getParam(nd,"cim:Measurement.measurementType");
-				String memOfPowerSysResId = GetParam.getParam(nd,"cim:Measurement.MemberOf_PSR");
+				String memOfPowerSysResId = GetParam.getParam(nd,"cim:Measurement.MemberOf_PSR").substring(1);
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, refName);
@@ -52,9 +54,10 @@ public class Analog extends IdentifiedObject {
 				Analog analogObj = new Analog(refId, refName, normalVal, measType, powerSysRes);
 				analogs.add(analogObj);
 			}
+			logger.debug("Read the analog contents from the XML file, loaded to the database");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error in loading analog details into the database",e);
+//			e.printStackTrace();
 		}
 		return analogs;
 	}

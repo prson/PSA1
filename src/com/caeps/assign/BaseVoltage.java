@@ -30,7 +30,6 @@ public class BaseVoltage extends IdentifiedObject{
 //			preparedStmt=conn.prepareStatement(query);
 //			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:BaseVoltage");
-			System.out.println(subList.getLength());
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO BaseVoltage VALUES (?,?,?)";
 				Node nd = subList.item(i);

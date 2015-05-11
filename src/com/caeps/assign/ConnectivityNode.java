@@ -3,6 +3,7 @@ package com.caeps.assign;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -10,6 +11,7 @@ import org.w3c.dom.NodeList;
 public class ConnectivityNode extends IdentifiedObject{
 	public String rdfID;
 	public VoltageLevel nodeContainerVoltLevel;
+	static Logger logger = Logger.getLogger(ConnectivityNode.class);
 	
 	public ConnectivityNode(String rdfId,String name, String localName, VoltageLevel nodeContainer){
 		super(name,localName);
@@ -20,7 +22,7 @@ public class ConnectivityNode extends IdentifiedObject{
 	static ArrayList<ConnectivityNode> getConnectivityNodes(Document doc,
 			Connection conn, ArrayList<VoltageLevel> voltageLevels) {
 		ArrayList<ConnectivityNode> connectivityNodes= new ArrayList<ConnectivityNode>();
-		System.out.println("Connectivity Nodes::");
+		logger.debug("Reading the connectivity contents from the XML File");
 		NodeList subList = doc.getElementsByTagName("cim:ConnectivityNode");
 		for (int i = 0; i < subList.getLength(); i++) {
 			Node nd = subList.item(i);
@@ -37,6 +39,7 @@ public class ConnectivityNode extends IdentifiedObject{
 					localName, voltLevel);
 			connectivityNodes.add(ab);
 		}
+		logger.debug("Succesfully read the connectivity contents from the XML File");
 		return connectivityNodes;
 	}
 	

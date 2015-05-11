@@ -1,5 +1,8 @@
 package com.caeps.assign;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -18,5 +21,18 @@ public class PowerSystemResource extends IdentifiedObject {
 			}
 		}
 		return objectFound;
+	}
+	
+	static void updatePowerSystemResourcesDB(Connection conn){
+		String query = "INSERT INTO powersystemresource SELECT * FROM (SELECT rdfId, name FROM equipmentcontainer UNION select rdfId, NAME FROM generatingunit UNION select rdfId, NAME FROM breaker UNION select rdfId, NAME FROM disconnector UNION select rdfId, NAME FROM loads UNION select rdfId, NAME FROM powertransformer UNION select rdfId, NAME FROM regulatingcontrol UNION select rdfId, NAME FROM synchronousmachine UNION select rdfId, NAME FROM transformerwinding ) as b";
+		PreparedStatement preparedStmt;
+		try {
+			preparedStmt = conn.prepareStatement(query);
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
