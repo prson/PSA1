@@ -90,8 +90,8 @@ public class CreateTable {
 					" name VARCHAR(255), "+
 					" maxP DECIMAL(7,2), " + 
 					"minP DECIMAL(7,2), "+ 
-					"equimentContainerId VARCHAR(255),"+
-					"FOREIGN KEY (equimentContainerId) REFERENCES EquipmentContainer(rdfId),"+
+					"equimentContainerRdfId VARCHAR(255),"+
+					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					" PRIMARY KEY ( rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table GeneratingUnit in given database successfully");
@@ -114,15 +114,15 @@ public class CreateTable {
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " +
 					" ratedS DECIMAL(7,2), " +
-					"GenratingUnitRDFId VARCHAR(255),"+
-					"RegControlRDFId VARCHAR(255),"+
-					"EquipmentContainerRdfId VARCHAR(255),"+	
-					"BaseVoltageRDFId VARCHAR(255),"+ 
+					"generatingUnitRdfId VARCHAR(255),"+
+					"regControlRdfId VARCHAR(255),"+
+					"equimentContainerRdfId VARCHAR(255),"+	
+					"baseVoltageRdfId VARCHAR(255),"+ 
 					" PRIMARY KEY ( rdfId),"+
-					"FOREIGN KEY (GenratingUnitRDFId) REFERENCES GeneratingUnit(rdfId),"+
-					"FOREIGN KEY (RegControlRDFId) REFERENCES RegulatingControl(rdfId),"+
-					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"FOREIGN KEY (BaseVoltageRDFId) REFERENCES BaseVoltage(rdfId))";
+					"FOREIGN KEY (generatingUnitRdfId) REFERENCES GeneratingUnit(rdfId),"+
+					"FOREIGN KEY (regControlRdfId) REFERENCES RegulatingControl(rdfId),"+
+					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					"FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table SynchronousMachine in given database successfully");
 			
@@ -147,9 +147,10 @@ public class CreateTable {
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
 					"state VARCHAR(255), " +
-					"equipmentRdfId VARCHAR(255), " +
+					"equipmentContainerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
+					"FOREIGN KEY (equipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Disconnector successfully");
@@ -161,10 +162,10 @@ public class CreateTable {
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
 					"state VARCHAR(255), " +
-					"EquipmentContainerRdfId VARCHAR(255), " +
+					"equimentContainerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Breaker successfully");
@@ -175,8 +176,8 @@ public class CreateTable {
 			sql = "CREATE TABLE IF NOT EXISTS PowerTransformer " +
 					"(rdfId VARCHAR(255), " +
 					"name VARCHAR(255), " +
-					"EquipmentContainerRdfId VARCHAR(255), " +
-					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					"equimentContainerRdfId VARCHAR(255), " +
+					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table PowerTransformer successfully");
@@ -205,10 +206,10 @@ public class CreateTable {
 					"name VARCHAR(255), " +
 					"pFixed DECIMAL(7,2), " +
 					"qFixed DECIMAL(7,2), " +
-					"EquipmentContainerRdfId VARCHAR(255), " +
+					"equimentContainerRdfId VARCHAR(255), " +
 					"baseVoltageRdfId VARCHAR(255), " +
 					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (EquipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
 					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Loads successfully");
