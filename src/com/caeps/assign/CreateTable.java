@@ -43,7 +43,7 @@ public class CreateTable {
 			sql = "CREATE TABLE IF NOT EXISTS Substation" +
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " +
-					" regionRDFId VARCHAR(255), " + 
+					" regionRdfId VARCHAR(255), " + 
 					" PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Substation in given database successfully");
@@ -54,11 +54,11 @@ public class CreateTable {
 			sql = "CREATE TABLE IF NOT EXISTS VoltageLevel"+ 
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " + 
-					" substationRDFId VARCHAR(255), " + 
-					"baseVoltageRDFId VARCHAR(255), "+
+					" substationRdfId VARCHAR(255), " + 
+					"baseVoltageRdfId VARCHAR(255), "+
 					" PRIMARY KEY ( rdfId),"+
-					"FOREIGN KEY (substationRDFId) REFERENCES Substation(rdfId),"+
-					"FOREIGN KEY (baseVoltageRDFId) REFERENCES BaseVoltage(rdfId))";
+					"FOREIGN KEY (substationRdfId) REFERENCES Substation(rdfId),"+
+					"FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table VoltageLevel in given database successfully");
 			
