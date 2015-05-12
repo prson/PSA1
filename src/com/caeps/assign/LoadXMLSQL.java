@@ -31,6 +31,7 @@ public class LoadXMLSQL {
 					conn);
 			ArrayList<VoltageLevel> voltageLevels = VoltageLevel
 					.getVoltageLevel(doc, conn, substations, baseVoltages);
+			ArrayList<Line> lines = Line.getLines(doc, conn);
 			EquipmentContainer.updateEquipmentContainerDB(conn);
 			ArrayList<GeneratingUnit> generatingUnits = GeneratingUnit
 					.getGeneratingUnit(doc, conn, equipmentContainers);
@@ -62,6 +63,8 @@ public class LoadXMLSQL {
 					.getConnectivityNodes(doc, conn, voltageLevels);
 			ArrayList<Terminal> terminals = Terminal.getTerminals(doc, conn,
 					conductingEquipments, connectivityNodes);
+			
+//			calculateYBus(substations, lineSegments, terminals);
 
 		}
 
@@ -74,5 +77,6 @@ public class LoadXMLSQL {
 			}
 		}
 	}
-
+	
+	
 }
