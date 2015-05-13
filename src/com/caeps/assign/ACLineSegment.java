@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 public class ACLineSegment extends ConductingEquipment {
 
-	public String rdfID;
+	public String localName;
 	public double gch;
 	public double bch;
 	public double r;
@@ -30,8 +30,8 @@ public class ACLineSegment extends ConductingEquipment {
 			double b0ch, double length, double r0, double x0,
 			EquipmentContainer memberOfEquipmentContainer,
 			BaseVoltage baseVoltage) {
-		super(name, localName);
-		rdfID = rdfId;
+		super(rdfId, name);
+		this.localName=localName;
 		this.gch = gch;
 		this.bch = bch;
 		this.r = r;

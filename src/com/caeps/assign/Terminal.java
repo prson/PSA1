@@ -37,6 +37,8 @@ public class Terminal extends IdentifiedObject{
 					"cim:Terminal.ConductingEquipment").substring(1);
 			String connectivityNodeId = GetParam.getParam(nd,
 					"cim:Terminal.ConnectivityNode").substring(1);
+			logger.debug(name);
+			logger.debug(conductingEquipId);
 			// System.out.println(conductingEquipId);
 			// System.out.println(conductingequipments.size());
 			ConductingEquipment identObj = ConductingEquipment.searchConductingEquipment(
