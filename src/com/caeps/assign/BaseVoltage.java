@@ -12,15 +12,34 @@ import org.w3c.dom.NodeList;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BaseVoltage.
+ */
 public class BaseVoltage extends IdentifiedObject{
 
+	/** The nominal value. */
 	public double nominalValue;
 
+	/**
+	 * Instantiates a new base voltage.
+	 *
+	 * @param rdfId the rdf id
+	 * @param n the n
+	 * @param nomVal the nom val
+	 */
 	public BaseVoltage(String rdfId, String n, double nomVal){
 		super(rdfId,n);
 		nominalValue = nomVal;
 	}
 	
+	/**
+	 * Gets the base voltages.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @return the base voltages
+	 */
 	static ArrayList<BaseVoltage> getBaseVoltages(Document doc, Connection conn){
 		ArrayList<BaseVoltage> baseVoltages=new ArrayList<BaseVoltage>();
 		String query = null;
@@ -51,6 +70,13 @@ public class BaseVoltage extends IdentifiedObject{
 		return baseVoltages;
 	}
 	
+	/**
+	 * Search base voltage.
+	 *
+	 * @param ab the ab
+	 * @param rdfId the rdf id
+	 * @return the base voltage
+	 */
 	static BaseVoltage searchBaseVoltage(ArrayList<BaseVoltage> ab, String rdfId) {
 		BaseVoltage objectFound = null;
 		for (BaseVoltage objIt : ab) {

@@ -9,13 +9,34 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Load.
+ */
 public class Load extends ConductingEquipment{
 	
+	/** The pfixed. */
 	public double pfixed;
+	
+	/** The qfixed. */
 	public double qfixed;
+	
+	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
+	
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
 	
+	/**
+	 * Instantiates a new load.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param pfixed the pfixed
+	 * @param qfixed the qfixed
+	 * @param memberOfEquipmentContainer the member of equipment container
+	 * @param baseVoltage the base voltage
+	 */
 	public Load(String rdfId,String name, double pfixed, double qfixed, EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
 		super(rdfId,name);
 		this.pfixed=pfixed;
@@ -24,6 +45,15 @@ public class Load extends ConductingEquipment{
 		this.baseVoltage=baseVoltage;
 	}
 	
+	/**
+	 * Gets the load.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param equipmentcontainers the equipmentcontainers
+	 * @param baseVoltages the base voltages
+	 * @return the load
+	 */
 	static ArrayList<Load> getLoad(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<Load> loads=new ArrayList<Load>();
 		String query = null;

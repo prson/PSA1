@@ -3,8 +3,19 @@ package com.caeps.assign;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetParam.
+ */
 public class GetParam {
 	
+	/**
+	 * Gets the param.
+	 *
+	 * @param node the node
+	 * @param param the param
+	 * @return the param
+	 */
 	public static String getParam(Node node, String param) {
 		Element nodeElement = (Element) node;
 		String paramValue = "";

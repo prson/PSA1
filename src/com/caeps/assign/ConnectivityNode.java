@@ -8,17 +8,43 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConnectivityNode.
+ */
 public class ConnectivityNode extends IdentifiedObject{
+	
+	/** The rdf id. */
 	public String rdfID;
+	
+	/** The node container volt level. */
 	public VoltageLevel nodeContainerVoltLevel;
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(ConnectivityNode.class);
 	
+	/**
+	 * Instantiates a new connectivity node.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param localName the local name
+	 * @param nodeContainer the node container
+	 */
 	public ConnectivityNode(String rdfId,String name, String localName, VoltageLevel nodeContainer){
 		super(name,localName);
 		rdfID=rdfId;
 		this.nodeContainerVoltLevel=nodeContainer;
 	}
 
+	/**
+	 * Gets the connectivity nodes.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param voltageLevels the voltage levels
+	 * @return the connectivity nodes
+	 */
 	static ArrayList<ConnectivityNode> getConnectivityNodes(Document doc,
 			Connection conn, ArrayList<VoltageLevel> voltageLevels) {
 		ArrayList<ConnectivityNode> connectivityNodes= new ArrayList<ConnectivityNode>();
@@ -43,6 +69,13 @@ public class ConnectivityNode extends IdentifiedObject{
 		return connectivityNodes;
 	}
 	
+	/**
+	 * Search connectivity node.
+	 *
+	 * @param ab the ab
+	 * @param rdfId the rdf id
+	 * @return the connectivity node
+	 */
 	static ConnectivityNode searchConnectivityNode (ArrayList<ConnectivityNode> ab, String rdfId) {
 		ConnectivityNode objectFound = null;
 		for (ConnectivityNode objIt : ab) {

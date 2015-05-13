@@ -9,12 +9,30 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GeneratingUnit.
+ */
 public class GeneratingUnit extends ConductingEquipment{
 
+	/** The max p. */
 	public double maxP;
+	
+	/** The min p. */
 	public double minP;
+	
+	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
 
+	/**
+	 * Instantiates a new generating unit.
+	 *
+	 * @param rdfId the rdf id
+	 * @param n the n
+	 * @param maxPow the max pow
+	 * @param minPow the min pow
+	 * @param memberOfEquipmentContainer the member of equipment container
+	 */
 	public GeneratingUnit(String rdfId, String n, double maxPow, double minPow, EquipmentContainer memberOfEquipmentContainer){
 		super(rdfId,n);
 		maxP = maxPow;
@@ -22,6 +40,14 @@ public class GeneratingUnit extends ConductingEquipment{
 		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
 	}
 	
+	/**
+	 * Gets the generating unit.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param equipmentcontainers the equipmentcontainers
+	 * @return the generating unit
+	 */
 	static ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers){
 		ArrayList<GeneratingUnit> generatingUnits=new ArrayList<GeneratingUnit>();
 		String query = null;
@@ -60,6 +86,13 @@ public class GeneratingUnit extends ConductingEquipment{
 		return generatingUnits;
 	}
 	
+	/**
+	 * Search generating unit.
+	 *
+	 * @param ab the ab
+	 * @param rdfId the rdf id
+	 * @return the generating unit
+	 */
 	static GeneratingUnit searchGeneratingUnit(ArrayList<GeneratingUnit> ab, String rdfId) {
 		GeneratingUnit objectFound = null;
 		for (GeneratingUnit objIt : ab) {

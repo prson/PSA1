@@ -10,8 +10,18 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoadDocument.
+ */
 public class LoadDocument {
 	
+	/**
+	 * Builds the document.
+	 *
+	 * @param filename the filename
+	 * @return the document
+	 */
 	Document buildDocument(String filename) {
 		Document doc=null; 
 		try {

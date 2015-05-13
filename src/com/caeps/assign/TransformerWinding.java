@@ -9,13 +9,34 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TransformerWinding.
+ */
 public class TransformerWinding  extends ConductingEquipment{
 
+	/** The r. */
 	public double r;
+	
+	/** The x. */
 	public double x;
+	
+	/** The power tfr. */
 	public PowerTransformer powerTfr;
+	
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
 	
+	/**
+	 * Instantiates a new transformer winding.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param r the r
+	 * @param x the x
+	 * @param powerTfr the power tfr
+	 * @param baseVoltage the base voltage
+	 */
 	public TransformerWinding(String rdfId,String name, double r, double x, PowerTransformer powerTfr, BaseVoltage baseVoltage){
 		super(rdfId,name);
 		rdfID=rdfId;
@@ -25,6 +46,15 @@ public class TransformerWinding  extends ConductingEquipment{
 		this.baseVoltage=baseVoltage;
 	}
 	
+	/**
+	 * Gets the transformer winding.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param powertransformers the powertransformers
+	 * @param baseVoltages the base voltages
+	 * @return the transformer winding
+	 */
 	static ArrayList<TransformerWinding> getTransformerWinding(Document doc, Connection conn, ArrayList<PowerTransformer> powertransformers, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<TransformerWinding> transformerWindings=new ArrayList<TransformerWinding>();
 		String query = null;

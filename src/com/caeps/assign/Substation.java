@@ -9,15 +9,34 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Substation.
+ */
 public class Substation extends EquipmentContainer {
 
+	/** The region_rdf id. */
 	public String region_rdfID;
 
+	/**
+	 * Instantiates a new substation.
+	 *
+	 * @param rdfId the rdf id
+	 * @param n the n
+	 * @param region_rdfId the region_rdf id
+	 */
 	public Substation(String rdfId, String n, String region_rdfId){
 		super(rdfId,n);
 		region_rdfID = region_rdfId;
 	}
 	
+	/**
+	 * Gets the substations.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @return the substations
+	 */
 	static ArrayList<Substation> getSubstations(Document doc, Connection conn){
 		ArrayList<Substation> substations=new ArrayList<Substation>();
 		String query = null;
@@ -51,6 +70,13 @@ public class Substation extends EquipmentContainer {
 		return substations;
 	}
 	
+	/**
+	 * Search substation.
+	 *
+	 * @param substationsList the substations list
+	 * @param rdfId the rdf id
+	 * @return the substation
+	 */
 	static Substation searchSubstation(ArrayList<Substation> substationsList,
 			String rdfId) {
 		Substation objectFound = null;

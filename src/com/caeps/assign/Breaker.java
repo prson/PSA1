@@ -10,11 +10,30 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Breaker.
+ */
 public class Breaker extends ConductingEquipment {
+	
+	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
+	
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
+	
+	/** The state. */
 	public String state;
 	
+	/**
+	 * Instantiates a new breaker.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param state the state
+	 * @param memberOfEquipmentContainer the member of equipment container
+	 * @param baseVoltage the base voltage
+	 */
 	public Breaker(String rdfId,String name, String state, EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
 		super(rdfId,name);
 		this.state = state;
@@ -22,6 +41,15 @@ public class Breaker extends ConductingEquipment {
 		this.baseVoltage = baseVoltage;
 	}
 
+	/**
+	 * Gets the breakers.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param equipmentContainers the equipment containers
+	 * @param baseVoltages the base voltages
+	 * @return the breakers
+	 */
 	static ArrayList<Breaker> getBreakers(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
 
 		ArrayList<Breaker> breakers = new ArrayList<Breaker>();

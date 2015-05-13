@@ -9,17 +9,41 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class VoltageLevel.
+ */
 public class VoltageLevel extends EquipmentContainer {
 
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
+	
+	/** The member of substation. */
 	public Substation memberOfSubstation;
 
+	/**
+	 * Instantiates a new voltage level.
+	 *
+	 * @param rdfId the rdf id
+	 * @param n the n
+	 * @param baseVoltage the base voltage
+	 * @param memberOfSubstation the member of substation
+	 */
 	public VoltageLevel(String rdfId, String n, BaseVoltage baseVoltage, Substation memberOfSubstation){
 		super(rdfId,n);
 		this.baseVoltage = baseVoltage;
 		this.memberOfSubstation = memberOfSubstation;
 	}
 	
+	/**
+	 * Gets the voltage level.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param substations the substations
+	 * @param baseVoltages the base voltages
+	 * @return the voltage level
+	 */
 	static ArrayList<VoltageLevel> getVoltageLevel(Document doc, Connection conn, ArrayList<Substation> substations, ArrayList<BaseVoltage> baseVoltages){
 		ArrayList<VoltageLevel> voltageLevels=new ArrayList<VoltageLevel>();
 		String query = null;
@@ -55,6 +79,13 @@ public class VoltageLevel extends EquipmentContainer {
 		return voltageLevels;
 	}
 	
+	/**
+	 * Search voltage level.
+	 *
+	 * @param ab the ab
+	 * @param rdfId the rdf id
+	 * @return the voltage level
+	 */
 	static VoltageLevel searchVoltageLevel (ArrayList<VoltageLevel> ab, String rdfId) {
 		VoltageLevel objectFound = null;
 		for (VoltageLevel objIt : ab) {

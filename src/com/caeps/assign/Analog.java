@@ -10,13 +10,33 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Analog.
+ */
 public class Analog extends IdentifiedObject {
 
+	/** The normal value. */
 	public double normalValue;
+	
+	/** The measurement type. */
 	public String measurementType;
+	
+	/** The member of power system resource. */
 	public PowerSystemResource memberOfPowerSystemResource;
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(Analog.class);
 	
+	/**
+	 * Instantiates a new analog.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param normalValue the normal value
+	 * @param measurementType the measurement type
+	 * @param memberOfPowerSystemResource the member of power system resource
+	 */
 	public Analog(String rdfId, String name, double normalValue, String measurementType, PowerSystemResource memberOfPowerSystemResource) {
 		super(rdfId, name);
 		this.normalValue = normalValue;
@@ -24,6 +44,14 @@ public class Analog extends IdentifiedObject {
 		this.memberOfPowerSystemResource = memberOfPowerSystemResource;
 	}
 
+	/**
+	 * Gets the analogs.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param powerSystemResources the power system resources
+	 * @return the analogs
+	 */
 	static ArrayList<Analog> getAnalogs(Document doc, Connection conn, ArrayList<PowerSystemResource> powerSystemResources) {
 
 		ArrayList<Analog> analogs = new ArrayList<Analog>();

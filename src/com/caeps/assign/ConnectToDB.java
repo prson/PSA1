@@ -6,13 +6,30 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConnectToDB.
+ */
 public class ConnectToDB {
+	
+	/** The logger. */
 	Logger logger = Logger.getLogger(ConnectToDB.class);
 
+	/**
+	 * Instantiates a new connect to db.
+	 */
 	public ConnectToDB() {
 	}
 
 	// establishing a connection to the database
+	/**
+	 * Establish connection.
+	 *
+	 * @param url the url
+	 * @param username the username
+	 * @param password the password
+	 * @return the connection
+	 */
 	Connection establishConnection(String url, String username, String password) {
 
 		try {

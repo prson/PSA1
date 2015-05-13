@@ -6,9 +6,20 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateTable.
+ */
 public class CreateTable {
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(CreateTable.class);
 	
+	/**
+	 * Creates the tables.
+	 *
+	 * @param conn the conn
+	 */
 	void createTables(Connection conn){
 		
 		logger.debug("Creating database..."+conn.toString());

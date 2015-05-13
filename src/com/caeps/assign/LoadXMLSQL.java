@@ -7,12 +7,29 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoadXMLSQL.
+ */
 public class LoadXMLSQL {
+	
+	/** The equipment containers. */
 	static ArrayList<EquipmentContainer> equipmentContainers = new ArrayList<EquipmentContainer>();
+	
+	/** The power system resources. */
 	static ArrayList<PowerSystemResource> powerSystemResources = new ArrayList<PowerSystemResource>();
+	
+	/** The conducting equipments. */
 	static ArrayList<ConductingEquipment> conductingEquipments = new ArrayList<ConductingEquipment>();
+	
+	/** The logger. */
 	private static Logger logger = Logger.getLogger(LoadXMLSQL.class);
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String args[]) {
 		Connection conn = null;
 		try {
@@ -78,6 +95,13 @@ public class LoadXMLSQL {
 		}
 	}
 	
+	/**
+	 * Calculate y bus.
+	 *
+	 * @param substations the substations
+	 * @param lineSegments the line segments
+	 * @param terminals the terminals
+	 */
 	static void calculateYBus(ArrayList<Substation> substations,
 			ArrayList<ACLineSegment> lineSegments, ArrayList<Terminal> terminals) {
 		// TODO Auto-generated method stub

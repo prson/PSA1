@@ -10,14 +10,33 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Line.
+ */
 public class Line extends EquipmentContainer {
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(EquipmentContainer.class);
 	
 	
+	/**
+	 * Instantiates a new line.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 */
 	public Line(String rdfId,String name){
 		super(rdfId,name);
 	}
 	
+	/**
+	 * Gets the lines.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @return the lines
+	 */
 	static ArrayList<Line> getLines(Document doc, Connection conn){
 		ArrayList<Line> lines=new ArrayList<Line>();
 		NodeList subList;

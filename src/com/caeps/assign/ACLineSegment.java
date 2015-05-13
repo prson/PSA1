@@ -9,22 +9,69 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ACLineSegment.
+ */
 public class ACLineSegment extends ConductingEquipment {
 
+	/** The local name. */
 	public String localName;
+	
+	/** The gch. */
 	public double gch;
+	
+	/** The bch. */
 	public double bch;
+	
+	/** The r. */
 	public double r;
+	
+	/** The x. */
 	public double x;
+	
+	/** The g0ch. */
 	public double g0ch;
+	
+	/** The b0ch. */
 	public double b0ch;
+	
+	/** The length. */
 	public double length;
+	
+	/** The r0. */
 	public double r0;
+	
+	/** The x0. */
 	public double x0;
+	
+	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
+	
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
+	
+	/** The logger. */
 	static Logger logger = Logger.getLogger(LoadXMLSQL.class);
 
+	/**
+	 * Instantiates a new AC line segment.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param localName the local name
+	 * @param gch the gch
+	 * @param bch the bch
+	 * @param r the r
+	 * @param x the x
+	 * @param g0ch the g0ch
+	 * @param b0ch the b0ch
+	 * @param length the length
+	 * @param r0 the r0
+	 * @param x0 the x0
+	 * @param memberOfEquipmentContainer the member of equipment container
+	 * @param baseVoltage the base voltage
+	 */
 	public ACLineSegment(String rdfId, String name, String localName,
 			double gch, double bch, double r, double x, double g0ch,
 			double b0ch, double length, double r0, double x0,
@@ -45,6 +92,15 @@ public class ACLineSegment extends ConductingEquipment {
 		this.baseVoltage = baseVoltage;
 	}
 
+	/**
+	 * Gets the line segments.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param equipmentcontainers the equipmentcontainers
+	 * @param baseVoltages the base voltages
+	 * @return the line segments
+	 */
 	static ArrayList<ACLineSegment> getLineSegments(Document doc,
 			Connection conn, ArrayList<EquipmentContainer> equipmentcontainers,
 			ArrayList<BaseVoltage> baseVoltages) {

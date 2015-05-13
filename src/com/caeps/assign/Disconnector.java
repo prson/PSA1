@@ -9,11 +9,30 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Disconnector.
+ */
 public class Disconnector extends ConductingEquipment {
+	
+	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
+	
+	/** The base voltage. */
 	public BaseVoltage baseVoltage;
+	
+	/** The state. */
 	public String state;
 	
+	/**
+	 * Instantiates a new disconnector.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param state the state
+	 * @param memberOfEquipmentContainer the member of equipment container
+	 * @param baseVoltage the base voltage
+	 */
 	public Disconnector(String rdfId, String name, String state, EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
 		super(rdfId,name);
 		this.state = state;
@@ -21,6 +40,15 @@ public class Disconnector extends ConductingEquipment {
 		this.baseVoltage = baseVoltage;
 	}
 
+	/**
+	 * Gets the disconnectors.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @param equipmentContainers the equipment containers
+	 * @param baseVoltages the base voltages
+	 * @return the disconnectors
+	 */
 	static ArrayList<Disconnector> getDisconnectors(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
 
 		ArrayList<Disconnector> disconnectors = new ArrayList<Disconnector>();

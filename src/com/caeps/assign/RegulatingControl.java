@@ -10,15 +10,34 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegulatingControl.
+ */
 public class RegulatingControl extends ConductingEquipment{
 
+	/** The target value. */
 	public double targetValue;
 	
+	/**
+	 * Instantiates a new regulating control.
+	 *
+	 * @param rdfId the rdf id
+	 * @param name the name
+	 * @param targetValue the target value
+	 */
 	public RegulatingControl(String rdfId,String name, double targetValue){
 		super(rdfId,name);
 		this.targetValue=targetValue;
 	}
 	
+	/**
+	 * Gets the regulating control.
+	 *
+	 * @param doc the doc
+	 * @param conn the conn
+	 * @return the regulating control
+	 */
 	static ArrayList<RegulatingControl> getRegulatingControl(Document doc, Connection conn){
 		ArrayList<RegulatingControl> regulatingControls=new ArrayList<RegulatingControl>();
 		String query = null;
@@ -51,6 +70,13 @@ public class RegulatingControl extends ConductingEquipment{
 		return regulatingControls;
 	}
 	
+	/**
+	 * Search regulating control.
+	 *
+	 * @param ab the ab
+	 * @param rdfId the rdf id
+	 * @return the regulating control
+	 */
 	static RegulatingControl searchRegulatingControl(ArrayList<RegulatingControl> ab, String rdfId) {
 		RegulatingControl objectFound = null;
 		for (RegulatingControl objIt : ab) {
