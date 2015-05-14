@@ -22,7 +22,7 @@ public class LoadDocument {
 	 * @param filename the filename
 	 * @return the document
 	 */
-	Document buildDocument(String filename) {
+	public Document buildDocument(String filename) {
 		Document doc = null; 
 		try {
 			File file = new File(filename);

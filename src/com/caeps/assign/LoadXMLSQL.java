@@ -24,24 +24,16 @@ public class LoadXMLSQL {
 	
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(LoadXMLSQL.class);
+	public static TwoDArray ybus;
 
 	/**
 	 * The main method.
 	 *
 	 * @param args the arguments
 	 */
-	public static void main(String args[]) {
-		Connection conn = null;
+	public static void readFile(Document doc, Connection conn) {
 		try {
-			logger.debug("Entering the main function");
-			String url = "jdbc:mysql://localhost:3306/";
-			String username = "root";
-			String password = "root";
-			conn = (new ConnectToDB()).establishConnection(url, username,
-					password);
-			String filename = "opencim3sub.xml";
 			(new CreateTable()).createTables(conn);
-			Document doc = (new LoadDocument()).buildDocument(filename);
 			ArrayList<BaseVoltage> baseVoltages = BaseVoltage.getBaseVoltages(
 					doc, conn);
 			ArrayList<Substation> substations = Substation.getSubstations(doc,
@@ -81,7 +73,7 @@ public class LoadXMLSQL {
 			ArrayList<Terminal> terminals = Terminal.getTerminals(doc, conn,
 					conductingEquipments, connectivityNodes);
 			
-			calculateYBus(substations, lineSegments, terminals);
+			ybus=calculateYBus(substations, lineSegments, terminals);
 
 		}
 
@@ -101,8 +93,9 @@ public class LoadXMLSQL {
 	 * @param substations the substations
 	 * @param lineSegments the line segments
 	 * @param terminals the terminals
+	 * @return 
 	 */
-	static void calculateYBus(ArrayList<Substation> substations,
+	static TwoDArray calculateYBus(ArrayList<Substation> substations,
 			ArrayList<ACLineSegment> lineSegments, ArrayList<Terminal> terminals) {
 		// TODO Auto-generated method stub
 		
@@ -138,6 +131,7 @@ public class LoadXMLSQL {
 				}
 			}
 		}
+		
 		logger.debug("YBUS Matrix");
 		System.out.println("***************************************************");
 		for(int i = 0; i < numOfBuses; i++){
@@ -146,6 +140,8 @@ public class LoadXMLSQL {
 			}System.out.println();
 		}
 		System.out.println("***************************************************");
+		
+		return ybus;
 		
 		
 	}

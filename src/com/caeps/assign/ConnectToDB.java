@@ -30,7 +30,7 @@ public class ConnectToDB {
 	 * @param password the password
 	 * @return the connection
 	 */
-	Connection establishConnection(String url, String username, String password) {
+	public Connection establishConnection(String url, String username, String password) {
 
 		try {
 			logger.debug("Loading driver...");
@@ -49,7 +49,8 @@ public class ConnectToDB {
 			return connection;
 		} catch (SQLException e) {
 			logger.error("Cannot connect the database!", e);
-			throw new RuntimeException("Cannot connect the database!", e);
+			connection=null;
+			return connection;
 		} finally {
 		}
 	}
