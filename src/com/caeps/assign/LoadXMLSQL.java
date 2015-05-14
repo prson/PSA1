@@ -25,6 +25,9 @@ public class LoadXMLSQL {
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(LoadXMLSQL.class);
 	public static TwoDArray ybus;
+	
+	public static ArrayList<Substation> substations;
+	
 
 	/**
 	 * The main method.
@@ -36,7 +39,7 @@ public class LoadXMLSQL {
 			(new CreateTable()).createTables(conn);
 			ArrayList<BaseVoltage> baseVoltages = BaseVoltage.getBaseVoltages(
 					doc, conn);
-			ArrayList<Substation> substations = Substation.getSubstations(doc,
+			substations = Substation.getSubstations(doc,
 					conn);
 			ArrayList<VoltageLevel> voltageLevels = VoltageLevel
 					.getVoltageLevel(doc, conn, substations, baseVoltages);
