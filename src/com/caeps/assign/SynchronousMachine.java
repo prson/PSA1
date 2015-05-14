@@ -43,13 +43,15 @@ public class SynchronousMachine extends ConductingEquipment{
 	 * @param memberOfEquipmentContainer the member of equipment container
 	 * @param baseVoltage the base voltage
 	 */
-	public SynchronousMachine (String rdfId,String name, double ratedS, GeneratingUnit memberOfGen, RegulatingControl regControl, EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
-		super(rdfId,name);
-		this.ratedS=ratedS;
-		this.memberOfGen=memberOfGen;
-		this.regControl=regControl;
-		this.memberOfEquipmentContainer=memberOfEquipmentContainer;
-		this.baseVoltage=baseVoltage;	
+	public SynchronousMachine (String rdfId, String name, double ratedS,
+			GeneratingUnit memberOfGen, RegulatingControl regControl,
+			EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
+		super(rdfId, name);
+		this.ratedS = ratedS;
+		this.memberOfGen = memberOfGen;
+		this.regControl = regControl;
+		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
+		this.baseVoltage = baseVoltage;	
 	}
 	
 	/**
@@ -63,13 +65,16 @@ public class SynchronousMachine extends ConductingEquipment{
 	 * @param regulatingControls the regulating controls
 	 * @return the synchronous machine
 	 */
-	static ArrayList<SynchronousMachine> getSynchronousMachine(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages, ArrayList<GeneratingUnit> generatingUnits, ArrayList<RegulatingControl> regulatingControls){
-		ArrayList<SynchronousMachine> synchronousMachines=new ArrayList<SynchronousMachine>();
+	static ArrayList<SynchronousMachine> getSynchronousMachine(Document doc, 
+			Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, 
+			ArrayList<BaseVoltage> baseVoltages, ArrayList<GeneratingUnit> generatingUnits,
+			ArrayList<RegulatingControl> regulatingControls){
+		ArrayList<SynchronousMachine> synchronousMachines = new ArrayList<SynchronousMachine>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			query="DELETE FROM synchronousMachine";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM synchronousMachine";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			
 			NodeList subList = doc.getElementsByTagName("cim:SynchronousMachine");
@@ -78,8 +83,7 @@ public class SynchronousMachine extends ConductingEquipment{
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
 				String memOfEquipmentContainer = GetParam.getParam(nd,
-						"cim:Equipment.MemberOf_EquipmentContainer").substring(
-						1);
+						"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
 				Double ratedS = Double.parseDouble(GetParam.getParam(nd,
 						"cim:SynchronousMachine.ratedS"));
 				String memOfGenUnitId = GetParam.getParam(nd,

@@ -40,11 +40,11 @@ public class CreateTable {
 			//Create table BaseVoltage
 			sql = "DROP TABLE IF EXISTS BaseVoltage";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS BaseVoltage"
-					+ "(rdfId VARCHAR(255) not NULL, " + 
-					"name VARCHAR(255), "
-					+ " nominalValue VARCHAR(255), " + 
-					" PRIMARY KEY ( rdfId ))";
+			sql = "CREATE TABLE IF NOT EXISTS BaseVoltage" +
+					"(rdfId VARCHAR(255) not NULL, " + 
+					" name VARCHAR(255), " +
+					" nominalValue VARCHAR(255), " + 
+					" PRIMARY KEY (rdfId ))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table BaseVoltage in given database successfully");
 			
@@ -62,21 +62,21 @@ public class CreateTable {
 			//Create table VoltageLevel
 			sql = "DROP TABLE IF EXISTS VoltageLevel";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS VoltageLevel"+ 
+			sql = "CREATE TABLE IF NOT EXISTS VoltageLevel" + 
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " + 
 					" substationRdfId VARCHAR(255), " + 
-					"baseVoltageRdfId VARCHAR(255), "+
-					" PRIMARY KEY ( rdfId),"+
-					"FOREIGN KEY (substationRdfId) REFERENCES Substation(rdfId),"+
-					"FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
+					" baseVoltageRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId)," +
+					" FOREIGN KEY (substationRdfId) REFERENCES Substation(rdfId)," +
+					" FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table VoltageLevel in given database successfully");
 			
 			//Create table EquipmentContainer
 			sql = "DROP TABLE IF EXISTS EquipmentContainer";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS EquipmentContainer"+ 
+			sql = "CREATE TABLE IF NOT EXISTS EquipmentContainer" + 
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " + 
 					" PRIMARY KEY (rdfId))";
@@ -86,7 +86,7 @@ public class CreateTable {
 			//Create table PowerSystemResource
 			sql = "DROP TABLE IF EXISTS PowerSystemResource";
 			stmt.executeUpdate(sql);
-			sql = "CREATE TABLE IF NOT EXISTS PowerSystemResource"+ 
+			sql = "CREATE TABLE IF NOT EXISTS PowerSystemResource" + 
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " + 
 					" PRIMARY KEY (rdfId))";
@@ -98,12 +98,12 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS GeneratingUnit" +
 					"(rdfId VARCHAR(255) not NULL, " + 
-					" name VARCHAR(255), "+
+					" name VARCHAR(255), " +
 					" maxP DECIMAL(7,2), " + 
-					"minP DECIMAL(7,2), "+ 
-					"equimentContainerRdfId VARCHAR(255),"+
-					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					" PRIMARY KEY ( rdfId))";
+					" minP DECIMAL(7,2), " + 
+					" equimentContainerRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table GeneratingUnit in given database successfully");
 			
@@ -112,9 +112,9 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS RegulatingControl " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"targetValue DECIMAL(7,2), " +
-					"PRIMARY KEY (rdfId))";
+					" name VARCHAR(255), " +
+					" targetValue DECIMAL(7,2), " +
+					" PRIMARY KEY (rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table RegulatingControl successfully");
 			
@@ -125,15 +125,15 @@ public class CreateTable {
 					"(rdfId VARCHAR(255) not NULL, " + 
 					" name VARCHAR(255), " +
 					" ratedS DECIMAL(7,2), " +
-					"generatingUnitRdfId VARCHAR(255),"+
-					"regControlRdfId VARCHAR(255),"+
-					"equimentContainerRdfId VARCHAR(255),"+	
-					"baseVoltageRdfId VARCHAR(255),"+ 
-					" PRIMARY KEY ( rdfId),"+
-					"FOREIGN KEY (generatingUnitRdfId) REFERENCES GeneratingUnit(rdfId),"+
-					"FOREIGN KEY (regControlRdfId) REFERENCES RegulatingControl(rdfId),"+
-					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
+					" generatingUnitRdfId VARCHAR(255), " +
+					" regControlRdfId VARCHAR(255), " +
+					" equimentContainerRdfId VARCHAR(255), " +	
+					" baseVoltageRdfId VARCHAR(255), " + 
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (generatingUnitRdfId) REFERENCES GeneratingUnit(rdfId), " +
+					" FOREIGN KEY (regControlRdfId) REFERENCES RegulatingControl(rdfId), " +
+					" FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId), " +
+					" FOREIGN KEY (baseVoltageRdfId) REFERENCES BaseVoltage(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table SynchronousMachine in given database successfully");
 			
@@ -142,12 +142,12 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Analog " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"normalValue DECIMAL(7,2), " +
-					"measurementType VARCHAR(255), " +
-					"memberRdfId VARCHAR(255), " +
-					"FOREIGN KEY (memberRdfId) REFERENCES PowerSystemResource(rdfId),"+
-					"PRIMARY KEY (rdfId))";
+					" name VARCHAR(255), " +
+					" normalValue DECIMAL(7,2), " +
+					" measurementType VARCHAR(255), " +
+					" memberRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (memberRdfId) REFERENCES PowerSystemResource(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Analog successfully");
 
@@ -156,13 +156,13 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Disconnector " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"state VARCHAR(255), " +
-					"equipmentContainerRdfId VARCHAR(255), " +
-					"baseVoltageRdfId VARCHAR(255), " +
-					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (equipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
+					" name VARCHAR(255), " +
+					" state VARCHAR(255), " +
+					" equipmentContainerRdfId VARCHAR(255), " +
+					" baseVoltageRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (equipmentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					" FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Disconnector successfully");
 
@@ -171,13 +171,13 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Breaker " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"state VARCHAR(255), " +
-					"equimentContainerRdfId VARCHAR(255), " +
-					"baseVoltageRdfId VARCHAR(255), " +
-					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
+					" name VARCHAR(255), " +
+					" state VARCHAR(255), " +
+					" equimentContainerRdfId VARCHAR(255), " +
+					" baseVoltageRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					" FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Breaker successfully");
 			
@@ -186,10 +186,10 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS PowerTransformer " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"equimentContainerRdfId VARCHAR(255), " +
-					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"PRIMARY KEY (rdfId))";
+					" name VARCHAR(255), " +
+					" equimentContainerRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table PowerTransformer successfully");
 
@@ -198,14 +198,14 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS TransformerWinding " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"r DECIMAL(7,4), " +
-					"x DECIMAL(7,4), " +
-					"transformerRdfId VARCHAR(255), " +
-					"baseVoltageRdfId VARCHAR(255), " +
-					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (transformerRdfID) REFERENCES PowerTransformer(rdfID), " +
-					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
+					" name VARCHAR(255), " +
+					" r DECIMAL(7,4), " +
+					" x DECIMAL(7,4), " +
+					" transformerRdfId VARCHAR(255), " +
+					" baseVoltageRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (transformerRdfID) REFERENCES PowerTransformer(rdfID), " +
+					" FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table TransformerWinding successfully");
 
@@ -214,14 +214,14 @@ public class CreateTable {
 			stmt.executeUpdate(sql);
 			sql = "CREATE TABLE IF NOT EXISTS Loads " +
 					"(rdfId VARCHAR(255), " +
-					"name VARCHAR(255), " +
-					"pFixed DECIMAL(7,2), " +
-					"qFixed DECIMAL(7,2), " +
-					"equimentContainerRdfId VARCHAR(255), " +
-					"baseVoltageRdfId VARCHAR(255), " +
-					"PRIMARY KEY (rdfId), " +
-					"FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
-					"FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
+					" name VARCHAR(255), " +
+					" pFixed DECIMAL(7,2), " +
+					" qFixed DECIMAL(7,2), " +
+					" equimentContainerRdfId VARCHAR(255), " +
+					" baseVoltageRdfId VARCHAR(255), " +
+					" PRIMARY KEY (rdfId), " +
+					" FOREIGN KEY (equimentContainerRdfId) REFERENCES EquipmentContainer(rdfId),"+
+					" FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Loads successfully");
 			

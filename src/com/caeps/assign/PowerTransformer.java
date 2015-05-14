@@ -26,8 +26,8 @@ public class PowerTransformer extends ConductingEquipment{
 	 * @param memberOfSubstation the member of substation
 	 */
 	public PowerTransformer(String rdfId,String name, Substation memberOfSubstation){
-		super(rdfId,name);
-		this.memberOfSubstation=memberOfSubstation;
+		super(rdfId, name);
+		this.memberOfSubstation = memberOfSubstation;
 	}
 	
 	/**
@@ -38,28 +38,31 @@ public class PowerTransformer extends ConductingEquipment{
 	 * @param substations the substations
 	 * @return the power transformers
 	 */
-	static ArrayList<PowerTransformer> getPowerTransformers(Document doc, Connection conn, ArrayList<Substation> substations){
-		ArrayList<PowerTransformer> powertransformers=new ArrayList<PowerTransformer>();
+	static ArrayList<PowerTransformer> getPowerTransformers(Document doc, 
+			Connection conn, ArrayList<Substation> substations){
+		ArrayList<PowerTransformer> powertransformers = new ArrayList<PowerTransformer>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		NodeList subList;
 		try {
-			query="DELETE FROM PowerTransformer";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM PowerTransformer";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			subList = doc.getElementsByTagName("cim:PowerTransformer");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
-				String memOfSubstationId = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
+				String memOfSubstationId = GetParam.getParam(nd,
+						"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
 				query = "insert into powerTransformer values (?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);
 				preparedStmt.setString(3, memOfSubstationId);
 				preparedStmt.execute();
-				Substation substation = Substation.searchSubstation(substations,memOfSubstationId);
+				Substation substation = Substation.searchSubstation(substations,
+						memOfSubstationId);
 				PowerTransformer ab = new PowerTransformer(refId, name,substation);
 				powertransformers.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);
@@ -79,7 +82,8 @@ public class PowerTransformer extends ConductingEquipment{
 	 * @param rdfId the rdf id
 	 * @return the power transformer
 	 */
-	static PowerTransformer searchPowerTransformer(ArrayList<PowerTransformer> ab, String rdfId) {
+	static PowerTransformer searchPowerTransformer(ArrayList<PowerTransformer> ab,
+			String rdfId) {
 		PowerTransformer objectFound = null;
 		for (PowerTransformer objIt : ab) {
 			if (objIt.getRdfID().equals(rdfId)) {

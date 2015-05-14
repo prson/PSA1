@@ -23,7 +23,7 @@ public class LoadDocument {
 	 * @return the document
 	 */
 	Document buildDocument(String filename) {
-		Document doc=null; 
+		Document doc = null; 
 		try {
 			File file = new File(filename);
 			DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();

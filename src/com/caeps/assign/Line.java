@@ -27,7 +27,7 @@ public class Line extends EquipmentContainer {
 	 * @param name the name
 	 */
 	public Line(String rdfId,String name){
-		super(rdfId,name);
+		super(rdfId, name);
 	}
 	
 	/**

@@ -106,10 +106,10 @@ public class LoadXMLSQL {
 			ArrayList<ACLineSegment> lineSegments, ArrayList<Terminal> terminals) {
 		// TODO Auto-generated method stub
 		
-		int numOfBuses=substations.size();
-		TwoDArray ybus=new TwoDArray(numOfBuses, numOfBuses);
+		int numOfBuses = substations.size();
+		TwoDArray ybus = new TwoDArray(numOfBuses, numOfBuses);
 		for(ACLineSegment objLS:lineSegments){
-			int count=0;
+			int count = 0;
 			Substation subs1 = null, subs2;
 			for(Terminal objTerm:terminals){
 				if(objTerm.conductingEquipment!=null){
@@ -118,21 +118,21 @@ public class LoadXMLSQL {
 //				logger.debug(objTerm.conductingEquipment.name);
 				if(objTerm.conductingEquipment.getRdfID().equals(objLS.getRdfID())){
 					count++;
-					if(count==2){
-						subs2=objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
-						int a=substations.indexOf(subs1);
-						int b=substations.indexOf(subs2);
+					if(count == 2){
+						subs2 = objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
+						int a = substations.indexOf(subs1);
+						int b = substations.indexOf(subs2);
 						logger.debug("Substations indexes for the"+objLS.r+" i"+objLS.x+" are: "+a+" and "+b);
-						ComplexNumber zline=new ComplexNumber(objLS.r,objLS.x);
-						ComplexNumber yline=ComplexNumber.cDiv(new ComplexNumber(1,0), zline);
-						ybus.values[a][b]=ComplexNumber.cDif(ybus.values[a][b], yline);
-						ybus.values[b][a]=ComplexNumber.cDif(ybus.values[b][a], yline);
-						ybus.values[a][a]=ComplexNumber.cSum(ybus.values[a][a], yline);
-						ybus.values[b][b]=ComplexNumber.cSum(ybus.values[b][b], yline);
+						ComplexNumber zline = new ComplexNumber(objLS.r,objLS.x);
+						ComplexNumber yline = ComplexNumber.cDiv(new ComplexNumber(1,0), zline);
+						ybus.values[a][b] = ComplexNumber.cDif(ybus.values[a][b], yline);
+						ybus.values[b][a] = ComplexNumber.cDif(ybus.values[b][a], yline);
+						ybus.values[a][a] = ComplexNumber.cSum(ybus.values[a][a], yline);
+						ybus.values[b][b] = ComplexNumber.cSum(ybus.values[b][b], yline);
 						break;
 					}
 					else{
-						subs1=objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
+						subs1 = objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
 					}
 				}
 				}
@@ -140,8 +140,8 @@ public class LoadXMLSQL {
 		}
 		logger.debug("YBUS Matrix");
 		System.out.println("***************************************************");
-		for(int i=0; i<numOfBuses;i++){
-			for(int j=0; j<numOfBuses;j++){
+		for(int i = 0; i < numOfBuses; i++){
+			for(int j = 0; j < numOfBuses; j++){
 				System.out.print(ybus.values[i][j].real+" i"+ybus.values[i][j].imaginary+"   ");
 			}System.out.println();
 		}

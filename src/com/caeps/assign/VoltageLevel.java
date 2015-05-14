@@ -29,8 +29,9 @@ public class VoltageLevel extends EquipmentContainer {
 	 * @param baseVoltage the base voltage
 	 * @param memberOfSubstation the member of substation
 	 */
-	public VoltageLevel(String rdfId, String n, BaseVoltage baseVoltage, Substation memberOfSubstation){
-		super(rdfId,n);
+	public VoltageLevel(String rdfId, String n, BaseVoltage baseVoltage,
+			Substation memberOfSubstation){
+		super(rdfId, n);
 		this.baseVoltage = baseVoltage;
 		this.memberOfSubstation = memberOfSubstation;
 	}
@@ -44,8 +45,9 @@ public class VoltageLevel extends EquipmentContainer {
 	 * @param baseVoltages the base voltages
 	 * @return the voltage level
 	 */
-	static ArrayList<VoltageLevel> getVoltageLevel(Document doc, Connection conn, ArrayList<Substation> substations, ArrayList<BaseVoltage> baseVoltages){
-		ArrayList<VoltageLevel> voltageLevels=new ArrayList<VoltageLevel>();
+	static ArrayList<VoltageLevel> getVoltageLevel(Document doc, Connection conn,
+			ArrayList<Substation> substations, ArrayList<BaseVoltage> baseVoltages){
+		ArrayList<VoltageLevel> voltageLevels = new ArrayList<VoltageLevel>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		NodeList subList;
@@ -55,8 +57,10 @@ public class VoltageLevel extends EquipmentContainer {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String refName = GetParam.getParam(nd, "cim:IdentifiedObject.name");
-				String memOfSubstationID = GetParam.getParam(nd,"cim:VoltageLevel.MemberOf_Substation").substring(1);
-				String baseVoltageId = GetParam.getParam(nd,"cim:VoltageLevel.BaseVoltage").substring(1);
+				String memOfSubstationID = GetParam.getParam(nd,
+						"cim:VoltageLevel.MemberOf_Substation").substring(1);
+				String baseVoltageId = GetParam.getParam(nd,
+						"cim:VoltageLevel.BaseVoltage").substring(1);
 				query = "insert into VoltageLevel values (?,?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
@@ -64,10 +68,12 @@ public class VoltageLevel extends EquipmentContainer {
 				preparedStmt.setString(3, memOfSubstationID);
 				preparedStmt.setString(4, baseVoltageId);
 				preparedStmt.execute();
-				BaseVoltage baseVoltage = BaseVoltage.searchBaseVoltage(baseVoltages,baseVoltageId);
-				Substation subst = Substation.searchSubstation(substations,memOfSubstationID);
+				BaseVoltage baseVoltage = BaseVoltage.searchBaseVoltage(
+						baseVoltages, baseVoltageId);
+				Substation subst = Substation.searchSubstation(
+						substations, memOfSubstationID);
 				// System.out.println(baseVoltage.localName+subst.localName);
-				VoltageLevel ab = new VoltageLevel(refId, refName,baseVoltage, subst);
+				VoltageLevel ab = new VoltageLevel(refId, refName, baseVoltage, subst);
 				voltageLevels.add(ab);
 				LoadXMLSQL.equipmentContainers.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);

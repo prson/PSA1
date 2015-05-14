@@ -37,12 +37,13 @@ public class Load extends ConductingEquipment{
 	 * @param memberOfEquipmentContainer the member of equipment container
 	 * @param baseVoltage the base voltage
 	 */
-	public Load(String rdfId,String name, double pfixed, double qfixed, EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
-		super(rdfId,name);
-		this.pfixed=pfixed;
-		this.qfixed=qfixed;
-		this.memberOfEquipmentContainer=memberOfEquipmentContainer;
-		this.baseVoltage=baseVoltage;
+	public Load(String rdfId,String name, double pfixed, double qfixed, 
+			EquipmentContainer memberOfEquipmentContainer, BaseVoltage baseVoltage){
+		super(rdfId, name);
+		this.pfixed = pfixed;
+		this.qfixed = qfixed;
+		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
+		this.baseVoltage = baseVoltage;
 	}
 	
 	/**
@@ -54,13 +55,15 @@ public class Load extends ConductingEquipment{
 	 * @param baseVoltages the base voltages
 	 * @return the load
 	 */
-	static ArrayList<Load> getLoad(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers, ArrayList<BaseVoltage> baseVoltages){
-		ArrayList<Load> loads=new ArrayList<Load>();
+	static ArrayList<Load> getLoad(Document doc, Connection conn, 
+			ArrayList<EquipmentContainer> equipmentcontainers, 
+			ArrayList<BaseVoltage> baseVoltages){
+		ArrayList<Load> loads = new ArrayList<Load>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			query="DELETE FROM Loads";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM Loads";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:NonConformLoad");
 			for (int i = 0; i < subList.getLength(); i++) {
@@ -72,8 +75,7 @@ public class Load extends ConductingEquipment{
 				double qfixed = Double.parseDouble(GetParam.getParam(nd,
 						"cim:EnergyConsumer.qfixed"));
 				String memOfEquipmentContainer = GetParam.getParam(nd,
-						"cim:Equipment.MemberOf_EquipmentContainer").substring(
-						1);
+						"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
 				String baseVoltageId = GetParam.getParam(nd,
 						"cim:ConductingEquipment.BaseVoltage").substring(1);
 				query = "insert into Loads values (?,?,?,?,?,?)";

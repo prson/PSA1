@@ -37,7 +37,8 @@ public class Analog extends IdentifiedObject {
 	 * @param measurementType the measurement type
 	 * @param memberOfPowerSystemResource the member of power system resource
 	 */
-	public Analog(String rdfId, String name, double normalValue, String measurementType, PowerSystemResource memberOfPowerSystemResource) {
+	public Analog(String rdfId, String name, double normalValue, 
+			String measurementType, PowerSystemResource memberOfPowerSystemResource) {
 		super(rdfId, name);
 		this.normalValue = normalValue;
 		this.measurementType = measurementType;
@@ -52,25 +53,28 @@ public class Analog extends IdentifiedObject {
 	 * @param powerSystemResources the power system resources
 	 * @return the analogs
 	 */
-	static ArrayList<Analog> getAnalogs(Document doc, Connection conn, ArrayList<PowerSystemResource> powerSystemResources) {
+	static ArrayList<Analog> getAnalogs(Document doc, Connection conn, 
+			ArrayList<PowerSystemResource> powerSystemResources) {
 
 		ArrayList<Analog> analogs = new ArrayList<Analog>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		
 		try {
-			query="DELETE FROM Analog";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM Analog";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:Analog");
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO Analog VALUES (?,?,?,?,?)";
 				Node nd = subList.item(i);
-				String refId = GetParam.getParam(nd,"rdf:ID");
-				String refName = GetParam.getParam(nd,"cim:IdentifiedObject.name");
-				double normalVal = Double.parseDouble(GetParam.getParam(nd,"cim:Analog.normalValue"));
-				String measType = GetParam.getParam(nd,"cim:Measurement.measurementType");
-				String memOfPowerSysResId = GetParam.getParam(nd,"cim:Measurement.MemberOf_PSR").substring(1);
+				String refId = GetParam.getParam(nd, "rdf:ID");
+				String refName = GetParam.getParam(nd, "cim:IdentifiedObject.name");
+				double normalVal = Double.parseDouble(GetParam.getParam(nd,
+						"cim:Analog.normalValue"));
+				String measType = GetParam.getParam(nd, "cim:Measurement.measurementType");
+				String memOfPowerSysResId = GetParam.getParam(nd,
+						"cim:Measurement.MemberOf_PSR").substring(1);
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, refName);
@@ -78,11 +82,14 @@ public class Analog extends IdentifiedObject {
 				preparedStmt.setString(4, measType);
 				preparedStmt.setString(5, memOfPowerSysResId);				
 				preparedStmt.execute();
-				PowerSystemResource powerSysRes = PowerSystemResource.searchPowerSystemResource(powerSystemResources, memOfPowerSysResId);
-				Analog analogObj = new Analog(refId, refName, normalVal, measType, powerSysRes);
+				PowerSystemResource powerSysRes = PowerSystemResource.
+						searchPowerSystemResource(powerSystemResources, memOfPowerSysResId);
+				Analog analogObj = new Analog(refId, refName, normalVal,
+						measType, powerSysRes);
 				analogs.add(analogObj);
 			}
-			logger.debug("Read the analog contents from the XML file, loaded to the database");
+			logger.debug("Read the analog contents from the XML file, "
+					+ "loaded to the database");
 		} catch (SQLException e) {
 			logger.error("Error in loading analog details into the database",e);
 //			e.printStackTrace();

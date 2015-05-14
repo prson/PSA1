@@ -13,7 +13,7 @@ public class ConnectivityNodeContainer extends PowerSystemResource{
 	 * @param n the n
 	 */
 	public ConnectivityNodeContainer(String rdfId, String n){
-		super(rdfId,n);
+		super(rdfId, n);
 	}
 
 

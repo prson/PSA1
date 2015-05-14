@@ -31,10 +31,11 @@ public class ConnectivityNode extends IdentifiedObject{
 	 * @param localName the local name
 	 * @param nodeContainer the node container
 	 */
-	public ConnectivityNode(String rdfId,String name, String localName, VoltageLevel nodeContainer){
-		super(name,localName);
-		rdfID=rdfId;
-		this.nodeContainerVoltLevel=nodeContainer;
+	public ConnectivityNode(String rdfId,String name, String localName, 
+			VoltageLevel nodeContainer){
+		super(name, localName);
+		rdfID = rdfId;
+		this.nodeContainerVoltLevel = nodeContainer;
 	}
 
 	/**

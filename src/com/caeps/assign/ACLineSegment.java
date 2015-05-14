@@ -78,7 +78,7 @@ public class ACLineSegment extends ConductingEquipment {
 			EquipmentContainer memberOfEquipmentContainer,
 			BaseVoltage baseVoltage) {
 		super(rdfId, name);
-		this.localName=localName;
+		this.localName = localName;
 		this.gch = gch;
 		this.bch = bch;
 		this.r = r;

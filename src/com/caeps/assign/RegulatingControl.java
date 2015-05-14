@@ -27,8 +27,8 @@ public class RegulatingControl extends ConductingEquipment{
 	 * @param targetValue the target value
 	 */
 	public RegulatingControl(String rdfId,String name, double targetValue){
-		super(rdfId,name);
-		this.targetValue=targetValue;
+		super(rdfId, name);
+		this.targetValue = targetValue;
 	}
 	
 	/**
@@ -43,22 +43,23 @@ public class RegulatingControl extends ConductingEquipment{
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			query="DELETE FROM regulatingControl";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM regulatingControl";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:RegulatingControl");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
-				Double targetValue = Double.parseDouble(GetParam.getParam(nd,"cim:RegulatingControl.targetValue"));
+				Double targetValue = Double.parseDouble(GetParam.getParam(nd,
+						"cim:RegulatingControl.targetValue"));
 				query = "insert into regulatingControl values (?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
 				preparedStmt.setString(2, name);
 				preparedStmt.setDouble(3, targetValue);
 				preparedStmt.execute();
-				RegulatingControl ab = new RegulatingControl(refId, name,targetValue);
+				RegulatingControl ab = new RegulatingControl(refId, name, targetValue);
 				regulatingControls.add(ab);
 				LoadXMLSQL.powerSystemResources.add(ab);
 				LoadXMLSQL.conductingEquipments.add(ab);
@@ -77,7 +78,8 @@ public class RegulatingControl extends ConductingEquipment{
 	 * @param rdfId the rdf id
 	 * @return the regulating control
 	 */
-	static RegulatingControl searchRegulatingControl(ArrayList<RegulatingControl> ab, String rdfId) {
+	static RegulatingControl searchRegulatingControl(ArrayList<RegulatingControl> ab,
+			String rdfId) {
 		RegulatingControl objectFound = null;
 		for (RegulatingControl objIt : ab) {
 			if (objIt.getRdfID().equals(rdfId)) {

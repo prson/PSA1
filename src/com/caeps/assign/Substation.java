@@ -26,7 +26,7 @@ public class Substation extends EquipmentContainer {
 	 * @param region_rdfId the region_rdf id
 	 */
 	public Substation(String rdfId, String n, String region_rdfId){
-		super(rdfId,n);
+		super(rdfId, n);
 		region_rdfID = region_rdfId;
 	}
 	
@@ -43,8 +43,8 @@ public class Substation extends EquipmentContainer {
 		PreparedStatement preparedStmt;
 		NodeList subList;
 		try {
-			query="DELETE FROM Substation";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM Substation";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			subList = doc.getElementsByTagName("cim:Substation");
 			for (int i = 0; i < subList.getLength(); i++) {

@@ -37,13 +37,14 @@ public class TransformerWinding  extends ConductingEquipment{
 	 * @param powerTfr the power tfr
 	 * @param baseVoltage the base voltage
 	 */
-	public TransformerWinding(String rdfId,String name, double r, double x, PowerTransformer powerTfr, BaseVoltage baseVoltage){
-		super(rdfId,name);
-		rdfID=rdfId;
-		this.r=r;
-		this.x=x;
-		this.powerTfr=powerTfr;
-		this.baseVoltage=baseVoltage;
+	public TransformerWinding(String rdfId, String name, double r, double x,
+			PowerTransformer powerTfr, BaseVoltage baseVoltage){
+		super(rdfId, name);
+		rdfID = rdfId;
+		this.r = r;
+		this.x = x;
+		this.powerTfr = powerTfr;
+		this.baseVoltage = baseVoltage;
 	}
 	
 	/**
@@ -55,13 +56,15 @@ public class TransformerWinding  extends ConductingEquipment{
 	 * @param baseVoltages the base voltages
 	 * @return the transformer winding
 	 */
-	static ArrayList<TransformerWinding> getTransformerWinding(Document doc, Connection conn, ArrayList<PowerTransformer> powertransformers, ArrayList<BaseVoltage> baseVoltages){
-		ArrayList<TransformerWinding> transformerWindings=new ArrayList<TransformerWinding>();
+	static ArrayList<TransformerWinding> getTransformerWinding(Document doc,
+			Connection conn, ArrayList<PowerTransformer> powertransformers,
+			ArrayList<BaseVoltage> baseVoltages){
+		ArrayList<TransformerWinding> transformerWindings = new ArrayList<TransformerWinding>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			query="DELETE FROM TransformerWinding";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM TransformerWinding";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			
 			NodeList subList = doc.getElementsByTagName("cim:TransformerWinding");
@@ -91,7 +94,8 @@ public class TransformerWinding  extends ConductingEquipment{
 						powertransformers, memOfPowerTransformer);
 				BaseVoltage baseVoltage = BaseVoltage.searchBaseVoltage(baseVoltages,
 						baseVoltageId);
-				TransformerWinding ab = new TransformerWinding(refId, name,r, x, powerTrans, baseVoltage);
+				TransformerWinding ab = new TransformerWinding(refId, name,r, x, 
+						powerTrans, baseVoltage);
 				LoadXMLSQL.powerSystemResources.add(ab);
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}

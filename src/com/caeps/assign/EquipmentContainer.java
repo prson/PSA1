@@ -18,7 +18,7 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
 	 * @param n the n
 	 */
 	public EquipmentContainer(String rdfId, String n){
-		super(rdfId,n);
+		super(rdfId, n);
 	}
 
 	/**
@@ -28,7 +28,8 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
 	 * @param rdfId the rdf id
 	 * @return the equipment container
 	 */
-	static EquipmentContainer searchEquipmentContainer(ArrayList<EquipmentContainer> ab, String rdfId) {
+	static EquipmentContainer searchEquipmentContainer(ArrayList<EquipmentContainer> ab,
+			String rdfId) {
 		EquipmentContainer objectFound = null;
 		for (EquipmentContainer objIt : ab) {
 			// System.out.println(objIt.getRdfID());

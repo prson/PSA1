@@ -35,11 +35,12 @@ public class Terminal extends IdentifiedObject{
 	 * @param connNode the conn node
 	 * @param conductingEquipment the conducting equipment
 	 */
-	public Terminal(String rdfId,String name, String localName, ConnectivityNode connNode, ConductingEquipment conductingEquipment){
-		super(name,localName);
-		rdfID=rdfId;
-		this.connNode=connNode;
-		this.conductingEquipment=conductingEquipment;
+	public Terminal(String rdfId,String name, String localName, 
+			ConnectivityNode connNode, ConductingEquipment conductingEquipment){
+		super(name, localName);
+		rdfID = rdfId;
+		this.connNode = connNode;
+		this.conductingEquipment = conductingEquipment;
 	}
 	
 	/**
@@ -54,7 +55,7 @@ public class Terminal extends IdentifiedObject{
 	static ArrayList<Terminal> getTerminals(Document doc,
 			Connection conn, ArrayList<ConductingEquipment> conductingEquipments,
 			ArrayList<ConnectivityNode> connectivityNodes) {
-		ArrayList<Terminal> terminals= new ArrayList<Terminal>();
+		ArrayList<Terminal> terminals = new ArrayList<Terminal>();
 		logger.debug("Loading the terminal from the XML File");
 		NodeList subList = doc.getElementsByTagName("cim:Terminal");
 		for (int i = 0; i < subList.getLength(); i++) {

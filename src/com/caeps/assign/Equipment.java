@@ -13,7 +13,7 @@ public class Equipment extends PowerSystemResource{
 	 * @param n the n
 	 */
 	public Equipment(String rdfId, String n){
-		super(rdfId,n);
+		super(rdfId, n);
 	}
 
 

@@ -20,8 +20,8 @@ public class IdentifiedObject  {
 	 * @param n the n
 	 */
 	public IdentifiedObject(String rdfId, String n){
-		rdfID=rdfId;
-		name=n;
+		rdfID = rdfId;
+		name = n;
 	}
 
 	/**

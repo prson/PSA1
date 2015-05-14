@@ -34,7 +34,7 @@ public class GeneratingUnit extends ConductingEquipment{
 	 * @param memberOfEquipmentContainer the member of equipment container
 	 */
 	public GeneratingUnit(String rdfId, String n, double maxPow, double minPow, EquipmentContainer memberOfEquipmentContainer){
-		super(rdfId,n);
+		super(rdfId, n);
 		maxP = maxPow;
 		minP = minPow;
 		this.memberOfEquipmentContainer = memberOfEquipmentContainer;
@@ -48,22 +48,26 @@ public class GeneratingUnit extends ConductingEquipment{
 	 * @param equipmentcontainers the equipmentcontainers
 	 * @return the generating unit
 	 */
-	static ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentcontainers){
-		ArrayList<GeneratingUnit> generatingUnits=new ArrayList<GeneratingUnit>();
+	static ArrayList<GeneratingUnit> getGeneratingUnit(Document doc, Connection conn,
+			ArrayList<EquipmentContainer> equipmentcontainers){
+		ArrayList<GeneratingUnit> generatingUnits = new ArrayList<GeneratingUnit>();
 		String query = null;
 		PreparedStatement preparedStmt;
 		try {
-			query="DELETE FROM GeneratingUnit";
-			preparedStmt=conn.prepareStatement(query);
+			query = "DELETE FROM GeneratingUnit";
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:ThermalGeneratingUnit");
 			for (int i = 0; i < subList.getLength(); i++) {
 				Node nd = subList.item(i);
 				String refId = GetParam.getParam(nd, "rdf:ID");
 				String name = GetParam.getParam(nd, "cim:IdentifiedObject.name");
-				String memOfEquipmentContainer = GetParam.getParam(nd,"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
-				Double maxOperatingP = Double.parseDouble(GetParam.getParam(nd,"cim:GeneratingUnit.maxOperatingP"));
-				Double minOperatingP = Double.parseDouble(GetParam.getParam(nd,"cim:GeneratingUnit.minOperatingP"));
+				String memOfEquipmentContainer = GetParam.getParam(nd,
+						"cim:Equipment.MemberOf_EquipmentContainer").substring(1);
+				Double maxOperatingP = Double.parseDouble(GetParam.getParam(nd,
+						"cim:GeneratingUnit.maxOperatingP"));
+				Double minOperatingP = Double.parseDouble(GetParam.getParam(nd,
+						"cim:GeneratingUnit.minOperatingP"));
 				query = "insert into GeneratingUnit values (?,?,?,?,?)";
 				preparedStmt = conn.prepareStatement(query);
 				preparedStmt.setString(1, refId);
@@ -72,9 +76,11 @@ public class GeneratingUnit extends ConductingEquipment{
 				preparedStmt.setDouble(4, minOperatingP);
 				preparedStmt.setString(5, memOfEquipmentContainer);
 				preparedStmt.execute();
-				EquipmentContainer subst = EquipmentContainer.searchEquipmentContainer(equipmentcontainers, memOfEquipmentContainer);
+				EquipmentContainer subst = EquipmentContainer.searchEquipmentContainer(
+						equipmentcontainers, memOfEquipmentContainer);
 				// System.out.println(baseVoltage.localName+subst.localName);
-				GeneratingUnit generatingUnitObj = new GeneratingUnit(refId,name, maxOperatingP, minOperatingP, subst);
+				GeneratingUnit generatingUnitObj = new GeneratingUnit(refId,name, 
+						maxOperatingP, minOperatingP, subst);
 				generatingUnits.add(generatingUnitObj);
 				LoadXMLSQL.powerSystemResources.add(generatingUnitObj);
 				LoadXMLSQL.conductingEquipments.add(generatingUnitObj);

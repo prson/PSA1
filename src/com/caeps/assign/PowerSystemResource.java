@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class PowerSystemResource.
@@ -19,7 +18,7 @@ public class PowerSystemResource extends IdentifiedObject {
 	 * @param n the n
 	 */
 	public PowerSystemResource(String rdfId, String n){
-		super(rdfId,n);
+		super(rdfId, n);
 	}
 
 	/**
