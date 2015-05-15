@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,6 +20,9 @@ public class BaseVoltage extends IdentifiedObject{
 
 	/** The nominal value. */
 	public double nominalValue;
+	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(LoadXMLSQL.class);
 
 	/**
 	 * Instantiates a new base voltage.
@@ -31,20 +37,17 @@ public class BaseVoltage extends IdentifiedObject{
 	}
 	
 	/**
-	 * Gets the base voltages.
+	 * Gets the list of base voltages in the CIM XML file.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
-	 * @return the base voltages
+	 * @param doc the document build from the CIM XML file
+	 * @param conn the database connection
+	 * @return the base voltages array list of base voltages in the power system
 	 */
 	static ArrayList<BaseVoltage> getBaseVoltages(Document doc, Connection conn){
 		ArrayList<BaseVoltage> baseVoltages = new ArrayList<BaseVoltage>();
 		String query = null;
 		PreparedStatement preparedStmt = null;
 		try {
-//			query="DELETE FROM BaseVoltage";
-//			preparedStmt=conn.prepareStatement(query);
-//			preparedStmt.execute();
 			NodeList subList = doc.getElementsByTagName("cim:BaseVoltage");
 			for (int i = 0; i < subList.getLength(); i++) {
 				query = "INSERT INTO BaseVoltage VALUES (?,?,?)";
@@ -60,10 +63,11 @@ public class BaseVoltage extends IdentifiedObject{
 				preparedStmt.execute();
 				BaseVoltage baseVoltageObj = new BaseVoltage(refId, refName, nominalVoltage);
 				baseVoltages.add(baseVoltageObj);
+				logger.debug("Read the base voltage contents from the XML file");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading base voltage details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading base voltage details into the database. Check logs for more details");
 		}
 		return baseVoltages;
 	}

@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 
 // TODO: Auto-generated Javadoc
@@ -97,20 +100,20 @@ public class ACLineSegment extends ConductingEquipment {
 	}
 
 	/**
-	 * Gets the line segments.
+	 * Gets the line segments and the details from the document built from the CIM XML file.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
-	 * @param equipmentcontainers the equipmentcontainers
-	 * @param baseVoltages the base voltages
+	 * @param doc the document build from the CIM XML file
+	 * @param conn the database connection
+	 * @param equipmentcontainers the list of equipment containers in the power system
+	 * @param baseVoltages the list if base voltages in the power system
 	 * @return the line segments
 	 */
 	static ArrayList<ACLineSegment> getLineSegments(Document doc,
 			Connection conn, ArrayList<EquipmentContainer> equipmentcontainers,
 			ArrayList<BaseVoltage> baseVoltages) {
 		
-		ArrayList<ACLineSegment> linesegments = new ArrayList<ACLineSegment>();
 		logger.debug("Loading AC Line Segments from the file");
+		ArrayList<ACLineSegment> linesegments = new ArrayList<ACLineSegment>();
 		NodeList subList = doc.getElementsByTagName("cim:ACLineSegment");
 		for (int i = 0; i < subList.getLength(); i++) {
 			Node nd = subList.item(i);
@@ -151,7 +154,7 @@ public class ACLineSegment extends ConductingEquipment {
 			linesegments.add(ab);
 			LoadXMLSQL.conductingEquipments.add(ab);
 		}
-		logger.debug("Read the ac line segment contents from the XML file");
+		logger.debug("Read succefully the ac line segment contents from the XML file");
 		return linesegments;
 	}
 }

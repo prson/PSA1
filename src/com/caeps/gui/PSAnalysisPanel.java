@@ -44,7 +44,7 @@ public class PSAnalysisPanel extends JPanel {
 	public static Connection conn;
 	boolean connectionEstablished = false;
 	Document doc;
-	JTextArea consoleArea;
+	public static JTextArea consoleArea;
 
 	public PSAnalysisPanel() {
 		JLabel connectionUrlLabel = new JLabel("Connection URL: ");

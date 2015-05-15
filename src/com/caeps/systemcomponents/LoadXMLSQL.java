@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.caeps.systemcomponents;
 
 import java.sql.Connection;
@@ -33,12 +36,14 @@ public class LoadXMLSQL {
 	public static ArrayList<ACLineSegment> lineSegments;
 
 	/**
-	 * The method which reads the file and creates the power system data structure in java
+	 * The method which reads the file and creates the power system data structure in java.
 	 *
-	 * @param args the arguments
+	 * @param doc the java document created from the CIM XML file 
+	 * @param conn the connection object for the database connection
 	 */
 	public static void readFile(Document doc, Connection conn) {
 		try {
+			// reading all the power system components and uploading to the database
 			(new CreateTable()).createTables(conn);
 			ArrayList<BaseVoltage> baseVoltages = BaseVoltage.getBaseVoltages(
 					doc, conn);
@@ -70,7 +75,8 @@ public class LoadXMLSQL {
 			PowerSystemResource.updatePowerSystemResourcesDB(conn);
 			ArrayList<Analog> analogs = Analog.getAnalogs(doc, conn,
 					powerSystemResources);
-
+			
+			// reading the power system components from the xml file required for YBus calculation 
 			lineSegments = ACLineSegment
 					.getLineSegments(doc, conn, equipmentContainers,
 							baseVoltages);
@@ -88,12 +94,12 @@ public class LoadXMLSQL {
 	}
 	
 	/**
-	 * Calculate y bus.
+	 * Function to calculate y bus in the power system.
 	 *
-	 * @param substations the substations
+	 * @param substations the substations in power system
 	 * @param lineSegments the line segments
 	 * @param terminals the terminals
-	 * @return 
+	 * @return a two d array of complex number having the Ybus
 	 */
 	static TwoDArray calculateYBus(ArrayList<Terminal> terminals) {
 		
@@ -104,9 +110,6 @@ public class LoadXMLSQL {
 			Substation subs1 = null, subs2;
 			for(Terminal objTerm:terminals){
 				if(objTerm.conductingEquipment!=null){
-//				logger.debug(objLS.rdfID);
-//				logger.debug(objTerm.name);
-//				logger.debug(objTerm.conductingEquipment.name);
 				if(objTerm.conductingEquipment.getRdfID().equals(objLS.getRdfID())){
 					count++;
 					if(count == 2){
@@ -132,13 +135,13 @@ public class LoadXMLSQL {
 			}
 		}
 		logger.debug("YBUS Matrix");
-		System.out.println("***************************************************");
+		logger.debug("***************************************************");
 		for(int i = 0; i < numOfBuses; i++){
 			for(int j = 0; j < numOfBuses; j++){
-				System.out.print(ybus.values[i][j].real+" i"+ybus.values[i][j].imaginary+"   ");
-			}System.out.println();
+				logger.debug(ybus.values[i][j].real+" i"+ybus.values[i][j].imaginary+"   ");
+			}
 		}
-		System.out.println("***************************************************");
+		logger.debug("***************************************************");
 		
 		return ybus;
 	}

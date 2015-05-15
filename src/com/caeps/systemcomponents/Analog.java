@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.caeps.gui.PSAnalysisPanel;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class Analog.
@@ -46,12 +48,12 @@ public class Analog extends IdentifiedObject {
 	}
 
 	/**
-	 * Gets the analogs.
+	 * Returns a list of analog components and its details in the power system CIM File.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
-	 * @param powerSystemResources the power system resources
-	 * @return the analogs
+	 * @param doc the document build from the CIM XML file
+	 * @param conn the database connection
+	 * @param powerSystemResources the list of power system resources
+	 * @return the analogs array list of analog components 
 	 */
 	static ArrayList<Analog> getAnalogs(Document doc, Connection conn, 
 			ArrayList<PowerSystemResource> powerSystemResources) {
@@ -91,8 +93,8 @@ public class Analog extends IdentifiedObject {
 			logger.debug("Read the analog contents from the XML file, "
 					+ "loaded to the database");
 		} catch (SQLException e) {
-			logger.error("Error in loading analog details into the database",e);
-//			e.printStackTrace();
+			logger.error("SQL Exception Error in loading analog details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading analog details into the database. Check logs for more details");
 		}
 		return analogs;
 	}
