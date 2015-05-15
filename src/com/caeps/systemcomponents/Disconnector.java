@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,6 +26,9 @@ public class Disconnector extends ConductingEquipment {
 	
 	/** The state. */
 	public String state;
+	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(Disconnector.class);
 	
 	/**
 	 * Instantiates a new disconnector.
@@ -44,11 +50,11 @@ public class Disconnector extends ConductingEquipment {
 	/**
 	 * Gets the disconnectors.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
-	 * @param equipmentContainers the equipment containers
-	 * @param baseVoltages the base voltages
-	 * @return the disconnectors
+	 * @param doc the doc built from the CIM XML File
+	 * @param conn the connection object to the database
+	 * @param equipmentContainers the equipment containers list in power system
+	 * @param baseVoltages the base voltages in the power system
+	 * @return the array list of disconnectors in the power system
 	 */
 	static ArrayList<Disconnector> getDisconnectors(Document doc, Connection conn, ArrayList<EquipmentContainer> equipmentContainers, ArrayList<BaseVoltage> baseVoltages){
 
@@ -90,8 +96,8 @@ public class Disconnector extends ConductingEquipment {
 				LoadXMLSQL.conductingEquipments.add(disconnectorObj);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading disconnector details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading disconnector details into the database. Check logs for more details");
 		}
 		return disconnectors;
 	}

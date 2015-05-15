@@ -1,7 +1,5 @@
 package com.caeps.systemcomponents;
 
-import java.lang.Math.*;
-
 /**
  * Class representing a complex number.
  *
@@ -24,7 +22,7 @@ public class ComplexNumber{
   }
 
   /**
-   * Constrctor taking two doubles, the real and the imaginary values.
+   * Constructor taking two doubles, the real and the imaginary values.
    *
    * @param r A double representing the real value.
    * @param i A double representing the imaginary value.

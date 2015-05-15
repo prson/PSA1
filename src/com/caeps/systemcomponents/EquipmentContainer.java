@@ -22,11 +22,11 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
 	}
 
 	/**
-	 * Search equipment container.
+	 * Search equipment container object from the list of equipment containers having a particular rdf id.
 	 *
-	 * @param ab the ab
-	 * @param rdfId the rdf id
-	 * @return the equipment container
+	 * @param ab the equipment container array list 
+	 * @param rdfId the rdf id to be searched
+	 * @return the equipment container 
 	 */
 	static EquipmentContainer searchEquipmentContainer(ArrayList<EquipmentContainer> ab,
 			String rdfId) {
@@ -44,9 +44,9 @@ public class EquipmentContainer extends ConnectivityNodeContainer {
 	}
 	
 	/**
-	 * Update equipment container db.
+	 * enters all the equiment containers in the database
 	 *
-	 * @param conn the conn
+	 * @param conn the conn conection to teh database object
 	 */
 	static void updateEquipmentContainerDB(Connection conn){
 		String query = "INSERT INTO equipmentcontainer SELECT * FROM (SELECT rdfId, name FROM voltagelevel UNION select rdfId, NAME FROM substation) as b; ";

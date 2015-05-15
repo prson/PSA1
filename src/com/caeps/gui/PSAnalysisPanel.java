@@ -153,7 +153,7 @@ public class PSAnalysisPanel extends JPanel {
 		consoleArea.setForeground(Color.WHITE);
 		consoleArea.setBackground(Color.BLACK);
 		consoleArea.setEditable(false);
-		consoleArea.append("Welcome!");
+
 
 		DefaultCaret caret = (DefaultCaret) consoleArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -163,11 +163,13 @@ public class PSAnalysisPanel extends JPanel {
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scroll.setPreferredSize(new Dimension(800, 100));
 
+
 		JPanel consolePanel = new JPanel();
 		consolePanel.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Console"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		consolePanel.add(scroll);
+		consoleArea.append("Welcome!");
 
 		JButton exitButton = new JButton("Exit");
 		ExitMouseListener exitMouseListener = new ExitMouseListener();
@@ -234,10 +236,17 @@ public class PSAnalysisPanel extends JPanel {
 			if (doc != null) {
 				if (conn != null) {
 					consoleArea
-							.append("\nCongrats! File read. Loading it to the database.....");
-					LoadXMLSQL.readFile(doc, conn);
+							.append("\nCongrats! File exists. Now reading and loading it to the database.....");
+					if(LoadXMLSQL.readFile(doc, conn)){
 					consoleArea
 							.append("\nCongrats! File read. Loaded to the database. Go ahead and perform operations!");
+					}
+					else
+					{
+						consoleArea
+						.append("\nError! File exists but unable to read and load into the database, check logs for details!");
+				
+					}
 				} else {
 					consoleArea
 							.append("\nOoopsss! File exists. But connection is not established. Please establish a connection and try again. Visit the logs for details");

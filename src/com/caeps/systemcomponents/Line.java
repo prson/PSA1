@@ -1,8 +1,6 @@
 package com.caeps.systemcomponents;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
@@ -10,9 +8,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class Line.
+ * The Class Line extending the equipment container class.
  */
 public class Line extends EquipmentContainer {
 	
@@ -31,10 +29,10 @@ public class Line extends EquipmentContainer {
 	}
 	
 	/**
-	 * Gets the lines.
+	 * Gets the lines in the power system.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document built from the CIM XML File
+	 * @param conn the database connection object
 	 * @return the lines
 	 */
 	static ArrayList<Line> getLines(Document doc, Connection conn){

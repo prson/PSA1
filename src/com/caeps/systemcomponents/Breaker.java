@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,6 +26,9 @@ public class Breaker extends ConductingEquipment {
 	
 	/** The state. */
 	public String state;
+	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(Breaker.class);
 	
 	/**
 	 * Instantiates a new breaker.
@@ -88,8 +94,8 @@ public class Breaker extends ConductingEquipment {
 				LoadXMLSQL.conductingEquipments.add(breakerObj);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading breaker details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading breaker details into the database. Check logs for more details");
 		}
 		return breakers;
 	}

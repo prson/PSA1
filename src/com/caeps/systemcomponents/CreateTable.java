@@ -6,6 +6,8 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
+import com.caeps.gui.PSAnalysisPanel;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class CreateTable.
@@ -20,8 +22,8 @@ public class CreateTable {
 	 *
 	 * @param conn the conn
 	 */
-	void createTables(Connection conn){
-		
+	boolean createTables(Connection conn){
+		boolean success=false;
 		logger.debug("Creating database..."+conn.toString());
 		Statement stmt;
 		try {
@@ -224,14 +226,14 @@ public class CreateTable {
 					" FOREIGN KEY (baseVoltageRdfID) REFERENCES BaseVoltage(rdfID))";
 			stmt.executeUpdate(sql);
 			logger.debug("Created table Loads successfully");
-			
+			success=true;
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			logger.error("Error while creating database and tables",e);
-//			e.printStackTrace();
+			PSAnalysisPanel.consoleArea.append("\nError while creating the database and tables. Check logs for more details");
+			success=false;
 		}
-		
+		return success;
 	}
 
 }

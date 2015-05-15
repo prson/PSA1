@@ -3,7 +3,7 @@ package com.caeps.systemcomponents;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class IdentifiedObject.
+ * The Class IdentifiedObject. The main class from which all the components of the powers system is inherited.
  */
 public class IdentifiedObject  {
 	

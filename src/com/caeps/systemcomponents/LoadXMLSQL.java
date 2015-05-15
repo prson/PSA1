@@ -34,6 +34,7 @@ public class LoadXMLSQL {
 	public static ArrayList<Load> loads;
 	public static ArrayList<SynchronousMachine> synchronousMachines;
 	public static ArrayList<ACLineSegment> lineSegments;
+	
 
 	/**
 	 * The method which reads the file and creates the power system data structure in java.
@@ -41,56 +42,60 @@ public class LoadXMLSQL {
 	 * @param doc the java document created from the CIM XML file 
 	 * @param conn the connection object for the database connection
 	 */
-	public static void readFile(Document doc, Connection conn) {
+	public static boolean readFile(Document doc, Connection conn) {
+		boolean success=false;
 		try {
 			// reading all the power system components and uploading to the database
-			(new CreateTable()).createTables(conn);
-			ArrayList<BaseVoltage> baseVoltages = BaseVoltage.getBaseVoltages(
-					doc, conn);
-			substations = Substation.getSubstations(doc,
-					conn);
-			ArrayList<VoltageLevel> voltageLevels = VoltageLevel
-					.getVoltageLevel(doc, conn, substations, baseVoltages);
-			ArrayList<Line> lines = Line.getLines(doc, conn);
-			EquipmentContainer.updateEquipmentContainerDB(conn);
-			ArrayList<GeneratingUnit> generatingUnits = GeneratingUnit
-					.getGeneratingUnit(doc, conn, equipmentContainers);
-			ArrayList<PowerTransformer> powerTransformers = PowerTransformer
-					.getPowerTransformers(doc, conn, substations);
-			ArrayList<RegulatingControl> regulatingControls = RegulatingControl
-					.getRegulatingControl(doc, conn);
-			synchronousMachines = SynchronousMachine
-					.getSynchronousMachine(doc, conn, equipmentContainers,
-							baseVoltages, generatingUnits, regulatingControls);
-			loads = Load.getLoad(doc, conn,
-					equipmentContainers, baseVoltages);
-			ArrayList<TransformerWinding> transformerWindings = TransformerWinding
-					.getTransformerWinding(doc, conn, powerTransformers,
-							baseVoltages);
-			ArrayList<Breaker> breakers = Breaker.getBreakers(doc, conn,
-					equipmentContainers, baseVoltages);
-			ArrayList<Disconnector> disconnectors = Disconnector
-					.getDisconnectors(doc, conn, equipmentContainers,
-							baseVoltages);
-			PowerSystemResource.updatePowerSystemResourcesDB(conn);
-			ArrayList<Analog> analogs = Analog.getAnalogs(doc, conn,
-					powerSystemResources);
-			
-			// reading the power system components from the xml file required for YBus calculation 
-			lineSegments = ACLineSegment
-					.getLineSegments(doc, conn, equipmentContainers,
-							baseVoltages);
-			ArrayList<ConnectivityNode> connectivityNodes = ConnectivityNode
-					.getConnectivityNodes(doc, conn, voltageLevels);
-			ArrayList<Terminal> terminals = Terminal.getTerminals(doc, conn,
-					conductingEquipments, connectivityNodes);
-			
-			ybus=calculateYBus(terminals);
-
+			if((new CreateTable()).createTables(conn)){
+				ArrayList<BaseVoltage> baseVoltages = BaseVoltage.getBaseVoltages(
+						doc, conn);
+				substations = Substation.getSubstations(doc,
+						conn);
+				ArrayList<VoltageLevel> voltageLevels = VoltageLevel
+						.getVoltageLevel(doc, conn, substations, baseVoltages);
+				ArrayList<Line> lines = Line.getLines(doc, conn);
+				EquipmentContainer.updateEquipmentContainerDB(conn);
+				ArrayList<GeneratingUnit> generatingUnits = GeneratingUnit
+						.getGeneratingUnit(doc, conn, equipmentContainers);
+				ArrayList<PowerTransformer> powerTransformers = PowerTransformer
+						.getPowerTransformers(doc, conn, substations);
+				ArrayList<RegulatingControl> regulatingControls = RegulatingControl
+						.getRegulatingControl(doc, conn);
+				synchronousMachines = SynchronousMachine
+						.getSynchronousMachine(doc, conn, equipmentContainers,
+								baseVoltages, generatingUnits, regulatingControls);
+				loads = Load.getLoad(doc, conn,
+						equipmentContainers, baseVoltages);
+				ArrayList<TransformerWinding> transformerWindings = TransformerWinding
+						.getTransformerWinding(doc, conn, powerTransformers,
+								baseVoltages);
+				ArrayList<Breaker> breakers = Breaker.getBreakers(doc, conn,
+						equipmentContainers, baseVoltages);
+				ArrayList<Disconnector> disconnectors = Disconnector
+						.getDisconnectors(doc, conn, equipmentContainers,
+								baseVoltages);
+				PowerSystemResource.updatePowerSystemResourcesDB(conn);
+				ArrayList<Analog> analogs = Analog.getAnalogs(doc, conn,
+						powerSystemResources);
+				
+				// reading the power system components from the xml file required for YBus calculation 
+				lineSegments = ACLineSegment
+						.getLineSegments(doc, conn, equipmentContainers,
+								baseVoltages);
+				ArrayList<ConnectivityNode> connectivityNodes = ConnectivityNode
+						.getConnectivityNodes(doc, conn, voltageLevels);
+				ArrayList<Terminal> terminals = Terminal.getTerminals(doc, conn,
+						conductingEquipments, connectivityNodes);
+				
+				ybus=calculateYBus(terminals);
+				success=true;
+			}
+			else
+				success=false;
 		}
-
 		finally {
 		}
+		return success;
 	}
 	
 	/**

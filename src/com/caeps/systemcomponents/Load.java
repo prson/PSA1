@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-// TODO: Auto-generated Javadoc
+import com.caeps.gui.PSAnalysisPanel;
+
 /**
  * The Class Load.
  */
@@ -26,6 +28,10 @@ public class Load extends ConductingEquipment{
 	
 	/** The base voltage. */
 	public BaseVoltage baseVoltage;
+
+	/** The logger. */
+	static Logger logger = Logger.getLogger(Load.class);
+
 	
 	/**
 	 * Instantiates a new load.
@@ -47,13 +53,13 @@ public class Load extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the load.
+	 * Gets the array list loads contained in an CIM XML document and loads it to the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
-	 * @param equipmentcontainers the equipmentcontainers
-	 * @param baseVoltages the base voltages
-	 * @return the load
+	 * @param doc the document built from the CIM XML File
+	 * @param conn the database connection object
+	 * @param equipmentcontainers the list of equipment containers in the power system
+	 * @param baseVoltages the list of base voltages in the power system
+	 * @return the load an array list of load in the CIM XML File
 	 */
 	static ArrayList<Load> getLoad(Document doc, Connection conn, 
 			ArrayList<EquipmentContainer> equipmentcontainers, 
@@ -98,8 +104,8 @@ public class Load extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading loads details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading loads details into the database. Check logs for more details");
 		}
 		return loads;
 	}

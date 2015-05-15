@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,7 +26,8 @@ public class GeneratingUnit extends ConductingEquipment{
 	
 	/** The member of equipment container. */
 	public EquipmentContainer memberOfEquipmentContainer;
-
+	
+	static Logger logger = Logger.getLogger(CreateTable.class);
 	/**
 	 * Instantiates a new generating unit.
 	 *
@@ -41,10 +45,10 @@ public class GeneratingUnit extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the generating unit.
+	 * Gets the generating unit object from a list of the generating unit.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document built from the CIM XML file
+	 * @param conn the conn connection to the datbase
 	 * @param equipmentcontainers the equipmentcontainers
 	 * @return the generating unit
 	 */
@@ -86,8 +90,8 @@ public class GeneratingUnit extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(generatingUnitObj);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading generating units details into the database",e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading generating unit details into the database. Check logs for more details");
 		}
 		return generatingUnits;
 	}
