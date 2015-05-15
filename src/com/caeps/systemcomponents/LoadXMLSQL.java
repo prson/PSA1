@@ -119,7 +119,6 @@ public class LoadXMLSQL {
 						subs2 = objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
 						int a = substations.indexOf(subs1);
 						int b = substations.indexOf(subs2);
-						logger.debug("Substations indexes for the"+objLS.r+" i"+objLS.x+" are: "+a+" and "+b);
 						ComplexNumber zline = new ComplexNumber(objLS.r,objLS.x);
 						ComplexNumber yline = ComplexNumber.cDiv(new ComplexNumber(1,0), zline);
 						ybus.values[a][b] = ComplexNumber.cDif(ybus.values[a][b], yline);

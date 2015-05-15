@@ -1,195 +1,192 @@
-Inside establish connection listener
-Loading driver...
-Driver loaded!
-Connecting database...
-Database connected!
-Inside load file listener
-File succesfully read.
-Creating database...com.mysql.jdbc.JDBC4Connection@13919d88
-Database created successfully
-Created table BaseVoltage in given database successfully
-Created table Substation in given database successfully
-Created table VoltageLevel in given database successfully
-Created table Equipment Container in given database successfully
-Created table PowerSystemResource in given database successfully
-Created table GeneratingUnit in given database successfully
-Created table RegulatingControl successfully
-Created table SynchronousMachine in given database successfully
-Created table Analog successfully
-Created table Disconnector successfully
-Created table Breaker successfully
-Created table PowerTransformer successfully
-Created table TransformerWinding successfully
-Created table Loads successfully
-Read the base voltage contents from the XML file
-Read the base voltage contents from the XML file
-Reading lines content from the XML
-Succesfully read lines content from the XML
-Read the analog contents from the XML file, loaded to the database
-Loading AC Line Segments from the file
-Read succefully the ac line segment contents from the XML file
-Reading the connectivity contents from the XML File
-Succesfully read the connectivity contents from the XML File
-Loading the terminal from the XML File
-GEN1_T1
-_ID_SUB1_ShynchMachine_Gen1
-TR1W1_T1
-_ID_TR1_W1
-TR1W2_T1
-_ID_TR1_W2
-BUS1_T1
-_ID_SUB1_BUS1_2F6957E4EF4559BF7EB
-BUS1_Low_T1
-_ID_SUB1_BUS1_Low_57E4EF4559BF7EB
-B1_T1
-_B11ED8476CA04C87AFE0EEABE4C974A7
-B1_T2
-_B11ED8476CA04C87AFE0EEABE4C974A7
-B4_T1
-_B41ED8476CA04C87AFE0EEABE4C974A7
-B4_T2
-_B41ED8476CA04C87AFE0EEABE4C974A7
-S1_T1
-_S192CC8E9D894D44BACECC06F90F0A4F
-S1_T2
-_S192CC8E9D894D44BACECC06F90F0A4F
-S2_T1
-_S292CC8E9D894D44BACECC06F90F0A4F
-S2_T2
-_S292CC8E9D894D44BACECC06F90F0A4F
-S5_T1
-_S592CC8E9D894D44BACECC06F90F0A4F
-S5_T2
-_S592CC8E9D894D44BACECC06F90F0A4F
-S6_T1
-_S692CC8E9D894D44BACECC06F90F0A4F
-S6_T2
-_S692CC8E9D894D44BACECC06F90F0A4F
-S15_T1
-_S152CC8E9D894D44BACECC06F90F0A4F
-S15_Bus1_Low
-_S152CC8E9D894D44BACECC06F90F0A4F
-S19_G1
-_S19_CC8E9D894D44BACECC06F90F0A4F
-S19_Bus1_Low
-_S19_CC8E9D894D44BACECC06F90F0A4F
-S15_T1
-_S162CC8E9D894D44BACECC06F90F0A4F
-S15_T2
-_S162CC8E9D894D44BACECC06F90F0A4F
-LOAD_T1
-_ID_SUB2_LOAD1
-BUS2_T1
-_ID_SUB2_BUS2_2F6957E4EF4559BF7EB
-B2_T1
-_B21ED8476CA04C87AFE0EEABE4C974A7
-B2_T2
-_B21ED8476CA04C87AFE0EEABE4C974A7
-B3_T1
-_B31ED8476CA04C87AFE0EEABE4C974A7
-B3_T2
-_B31ED8476CA04C87AFE0EEABE4C974A7
-B6_T1
-_B61ED8476CA04C87AFE0EEABE4C974A7
-B6_T2
-_B61ED8476CA04C87AFE0EEABE4C974A7
-S3_T1
-_S332CC8E9D894D44BACECC06F90F0A4F
-S3_T2
-_S332CC8E9D894D44BACECC06F90F0A4F
-S4_T1
-_S432CC8E9D894D44BACECC06F90F0A4F
-S4_T2
-_S432CC8E9D894D44BACECC06F90F0A4F
-S9_T1
-_S932CC8E9D894D44BACECC06F90F0A4F
-S9_T2
-_S932CC8E9D894D44BACECC06F90F0A4F
-S10_T1
-_S102CC8E9D894D44BACECC06F90F0A4F
-S10_T2
-_S102CC8E9D894D44BACECC06F90F0A4F
-S7_T1
-_S172CC8E9D894D44BACECC06F90F0A4F
-S7_T2
-_S172CC8E9D894D44BACECC06F90F0A4F
-S18_T1
-_S182CC8E9D894D44BACECC06F90F0A4F
-S18_T2
-_S182CC8E9D894D44BACECC06F90F0A4F
-GEN2_T1
-_ID_SUB2_ShynchMachine_Gen2
-TR2W1_T1
-_ID_TR2_W1
-TR2W2_T1
-_ID_TR2_W2
-BUS3_T1
-_ID_SUB3_BUS3_2F6957E4EF4559BF7EB
-BUS3_Low_T1
-_ID_SUB3_BUS3_Low_57E4EF4559BF7EB
-B5_T1
-_B51ED8476CA04C87AFE0EEABE4C974A7
-B5_T2
-_B51ED8476CA04C87AFE0EEABE4C974A7
-B7_T1
-_B71ED8476CA04C87AFE0EEABE4C974A7
-B7_T2
-_B71ED8476CA04C87AFE0EEABE4C974A7
-S7_T1
-_S792CC8E9D894D44BACECC06F90F0A4F
-S7_T2
-_S792CC8E9D894D44BACECC06F90F0A4F
-S8_T1
-_S892CC8E9D894D44BACECC06F90F0A4F
-S8_T2
-_S892CC8E9D894D44BACECC06F90F0A4F
-S11_T1
-_S112CC8E9D894D44BACECC06F90F0A4F
-S11_T2
-_S112CC8E9D894D44BACECC06F90F0A4F
-S12_T1
-_S122CC8E9D894D44BACECC06F90F0A4F
-S12_T2
-_S122CC8E9D894D44BACECC06F90F0A4F
-S13_T1
-_S132CC8E9D894D44BACECC06F90F0A4F
-S13_T2
-_S132CC8E9D894D44BACECC06F90F0A4F
-S14_T1
-_S142CC8E9D894D44BACECC06F90F0A4F
-S14_Bus3_Low
-_S142CC8E9D894D44BACECC06F90F0A4F
-S20_Bus3_Low
-_S202CC8E9D894D44BACECC06F90F0A4F
-S20_G2
-_S202CC8E9D894D44BACECC06F90F0A4F
-LN1AC_T1
-_ID_LN1AC_ACLineSeg
-LN1AC_T2
-_ID_LN1AC_ACLineSeg
-LN2AC_T1
-_ID_LN2AC_ACLineSeg
-LN2AC_T2
-_ID_LN2AC_ACLineSeg
-LN3AC_T1
-_ID_LN3AC_ACLineSeg
-LN3AC_T2
-_ID_LN3AC_ACLineSeg
-Succesfully read the terminal contents from the XML File
-Substations indexes for the0.231 i130.25 are: 0 and 2
-Substations indexes for the0.215 i20.45 are: 0 and 1
-Substations indexes for the5.656 i50.33 are: 1 and 2
-YBUS Matrix
-***************************************************
-5.276643656641581E-4 i-0.0565718701203232   
--5.140481898659703E-4 i0.04889435108260043   
--1.3616175798187791E-5 i0.007677519037722769   
--5.140481898659703E-4 i0.04889435108260043   
-0.002719031108507329 i-0.06851542433140163   
--0.002204982918641359 i0.019621073248801205   
--1.3616175798187791E-5 i0.007677519037722769   
--0.002204982918641359 i0.019621073248801205   
-0.002218599094439547 i-0.027298592286523975   
-***************************************************
-Closing the connection and exiting!
-Closing the connection and exiting!
+0    [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Inside establish connection listener
+17   [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectToDB  - Loading driver...
+48   [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectToDB  - Driver loaded!
+48   [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectToDB  - Connecting database...
+1970 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectToDB  - Database connected!
+4014 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Inside load file listener
+4322 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadDocument  - File succesfully read.
+4337 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Creating database...com.mysql.jdbc.JDBC4Connection@3eb47d28
+9346 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Database created successfully
+9925 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table BaseVoltage in given database successfully
+10408 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Substation in given database successfully
+10736 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table VoltageLevel in given database successfully
+11017 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Equipment Container in given database successfully
+11501 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table PowerSystemResource in given database successfully
+11902 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table GeneratingUnit in given database successfully
+12355 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table RegulatingControl successfully
+12823 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table SynchronousMachine in given database successfully
+13213 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Analog successfully
+13666 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Disconnector successfully
+14545 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Breaker successfully
+14859 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table PowerTransformer successfully
+15406 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table TransformerWinding successfully
+15906 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.CreateTable  - Created table Loads successfully
+16146 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Read the base voltage contents from the XML file
+16287 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Read the base voltage contents from the XML file
+17397 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.EquipmentContainer  - Reading lines content from the XML
+17413 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.EquipmentContainer  - Succesfully read lines content from the XML
+22062 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Analog  - Read the analog contents from the XML file, loaded to the database
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Loading AC Line Segments from the file
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Read succefully the ac line segment contents from the XML file
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectivityNode  - Reading the connectivity contents from the XML File
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.ConnectivityNode  - Succesfully read the connectivity contents from the XML File
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - Loading the terminal from the XML File
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - GEN1_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB1_ShynchMachine_Gen1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - TR1W1_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_TR1_W1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - TR1W2_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_TR1_W2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - BUS1_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB1_BUS1_2F6957E4EF4559BF7EB
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - BUS1_Low_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB1_BUS1_Low_57E4EF4559BF7EB
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B1_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B11ED8476CA04C87AFE0EEABE4C974A7
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B1_T2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B11ED8476CA04C87AFE0EEABE4C974A7
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B4_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B41ED8476CA04C87AFE0EEABE4C974A7
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B4_T2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B41ED8476CA04C87AFE0EEABE4C974A7
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S1_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S192CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S1_T2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S192CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S2_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S292CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S2_T2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S292CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S5_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S592CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S5_T2
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S592CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S6_T1
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S692CC8E9D894D44BACECC06F90F0A4F
+22073 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S6_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S692CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S15_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S152CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S15_Bus1_Low
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S152CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S19_G1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S19_CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S19_Bus1_Low
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S19_CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S15_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S162CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S15_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S162CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LOAD_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB2_LOAD1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - BUS2_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB2_BUS2_2F6957E4EF4559BF7EB
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B2_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B21ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B2_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B21ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B3_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B31ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B3_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B31ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B6_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B61ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B6_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B61ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S3_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S332CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S3_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S332CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S4_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S432CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S4_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S432CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S9_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S932CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S9_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S932CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S10_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S102CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S10_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S102CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S7_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S172CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S7_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S172CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S18_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S182CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S18_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S182CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - GEN2_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB2_ShynchMachine_Gen2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - TR2W1_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_TR2_W1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - TR2W2_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_TR2_W2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - BUS3_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB3_BUS3_2F6957E4EF4559BF7EB
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - BUS3_Low_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_SUB3_BUS3_Low_57E4EF4559BF7EB
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B5_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B51ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B5_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B51ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B7_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B71ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - B7_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _B71ED8476CA04C87AFE0EEABE4C974A7
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S7_T1
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S792CC8E9D894D44BACECC06F90F0A4F
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S7_T2
+22089 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S792CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S8_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S892CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S8_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S892CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S11_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S112CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S11_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S112CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S12_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S122CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S12_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S122CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S13_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S132CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S13_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S132CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S14_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S142CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S14_Bus3_Low
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S142CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S20_Bus3_Low
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S202CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - S20_G2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _S202CC8E9D894D44BACECC06F90F0A4F
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN1AC_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN1AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN1AC_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN1AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN2AC_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN2AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN2AC_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN2AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN3AC_T1
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN3AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - LN3AC_T2
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - _ID_LN3AC_ACLineSeg
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.Terminal  - Succesfully read the terminal contents from the XML File
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - YBUS Matrix
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - ***************************************************
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - 5.276643656641581E-4 i-0.0565718701203232   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -5.140481898659703E-4 i0.04889435108260043   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -1.3616175798187791E-5 i0.007677519037722769   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -5.140481898659703E-4 i0.04889435108260043   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - 0.002719031108507329 i-0.06851542433140163   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -0.002204982918641359 i0.019621073248801205   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -1.3616175798187791E-5 i0.007677519037722769   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - -0.002204982918641359 i0.019621073248801205   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - 0.002218599094439547 i-0.027298592286523975   
+22105 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - ***************************************************
+102729 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Closing the connection and exiting!
+102729 [AWT-EventQueue-0] DEBUG com.caeps.systemcomponents.LoadXMLSQL  - Closing the connection and exiting!
