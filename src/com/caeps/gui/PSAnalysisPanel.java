@@ -27,6 +27,7 @@ import javax.swing.text.DefaultCaret;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
+import com.caeps.assign.ACLineSegment;
 import com.caeps.assign.ConnectToDB;
 import com.caeps.assign.Load;
 import com.caeps.assign.LoadDocument;
@@ -119,6 +120,11 @@ public class PSAnalysisPanel extends JPanel {
 		getGensButton.addMouseListener(getGensMouseListener);
 		getGensButton.setPreferredSize(new Dimension(120,30));
 		
+		JButton getLinesButton = new JButton("Get Lines");
+		GetLinesMouseListener getLinesMouseListener = new GetLinesMouseListener();
+		getLinesButton.addMouseListener(getLinesMouseListener);
+		getLinesButton.setPreferredSize(new Dimension(120,30));
+		
 		JPanel buttonPanel = new JPanel();
 //		buttonPanel.setPreferredSize(new Dimension(super.getWidth()*1/4,20));
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
@@ -129,6 +135,7 @@ public class PSAnalysisPanel extends JPanel {
 		buttonPanel.add(getSubstationsButton);
 		buttonPanel.add(getLoadsButton);
 		buttonPanel.add(getGensButton);
+		buttonPanel.add(getLinesButton);
 		
 		resultsArea = new JTextArea();
 		resultsArea.setPreferredSize(new Dimension(400, 200));
@@ -440,6 +447,49 @@ public class PSAnalysisPanel extends JPanel {
 		}
 		public void mouseExited(MouseEvent e) {
 		}
+		public void mouseReleased(MouseEvent e) {
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+	}
+	
+	class GetLinesMouseListener implements MouseListener{
+		
+		public void mouseClicked(MouseEvent e) {
+			logger.debug("Inside get lines listener");
+			if(conn == null){
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the lines!");
+			}
+			else if(doc == null)
+			{
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the lines!");
+			}
+			else{
+				consoleArea.setForeground(Color.GREEN);
+				consoleArea.append("\nGetting lines...");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ArrayList<ACLineSegment> lines= LoadXMLSQL.lineSegments;
+				int numOfLines= lines.size();
+				logger.debug("Getting Lines");
+				String result = "Lines \n\nNo.    Name          R               X                 SubstationFrom        SubstationTo   \n";
+				for(int i = 0; i < numOfLines; i++){
+					result = result + (i+1) + "        " + lines.get(i).name+ "        " + lines.get(i).r+ "        " + lines.get(i).x+ "        " +lines.get(i).substationFrom.name+ "               " +lines.get(i).substationTo.name+ "\n";
+				}
+				consoleArea.append("\nLines retrieved");
+				resultsArea.setText(result);
+			}
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		} 
 		public void mouseReleased(MouseEvent e) {
 		}
 		public void mousePressed(MouseEvent e) {

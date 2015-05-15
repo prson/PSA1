@@ -29,6 +29,7 @@ public class LoadXMLSQL {
 	public static ArrayList<Substation> substations;
 	public static ArrayList<Load> loads;
 	public static ArrayList<SynchronousMachine> synchronousMachines;
+	public static ArrayList<ACLineSegment> lineSegments;
 
 	/**
 	 * The main method.
@@ -69,7 +70,7 @@ public class LoadXMLSQL {
 			ArrayList<Analog> analogs = Analog.getAnalogs(doc, conn,
 					powerSystemResources);
 
-			ArrayList<ACLineSegment> lineSegments = ACLineSegment
+			lineSegments = ACLineSegment
 					.getLineSegments(doc, conn, equipmentContainers,
 							baseVoltages);
 			ArrayList<ConnectivityNode> connectivityNodes = ConnectivityNode
@@ -77,7 +78,7 @@ public class LoadXMLSQL {
 			ArrayList<Terminal> terminals = Terminal.getTerminals(doc, conn,
 					conductingEquipments, connectivityNodes);
 			
-			ybus=calculateYBus(substations, lineSegments, terminals);
+			ybus=calculateYBus(terminals);
 
 		}
 
@@ -99,9 +100,7 @@ public class LoadXMLSQL {
 	 * @param terminals the terminals
 	 * @return 
 	 */
-	static TwoDArray calculateYBus(ArrayList<Substation> substations,
-			ArrayList<ACLineSegment> lineSegments, ArrayList<Terminal> terminals) {
-		// TODO Auto-generated method stub
+	static TwoDArray calculateYBus(ArrayList<Terminal> terminals) {
 		
 		int numOfBuses = substations.size();
 		TwoDArray ybus = new TwoDArray(numOfBuses, numOfBuses);
@@ -126,16 +125,17 @@ public class LoadXMLSQL {
 						ybus.values[b][a] = ComplexNumber.cDif(ybus.values[b][a], yline);
 						ybus.values[a][a] = ComplexNumber.cSum(ybus.values[a][a], yline);
 						ybus.values[b][b] = ComplexNumber.cSum(ybus.values[b][b], yline);
+						objLS.substationTo=subs2;
 						break;
 					}
 					else{
 						subs1 = objTerm.connNode.nodeContainerVoltLevel.memberOfSubstation;
+						objLS.substationFrom=subs1;
 					}
 				}
 				}
 			}
 		}
-		
 		logger.debug("YBUS Matrix");
 		System.out.println("***************************************************");
 		for(int i = 0; i < numOfBuses; i++){
@@ -146,8 +146,6 @@ public class LoadXMLSQL {
 		System.out.println("***************************************************");
 		
 		return ybus;
-		
-		
 	}
 		
 }

@@ -53,6 +53,9 @@ public class ACLineSegment extends ConductingEquipment {
 	
 	/** The logger. */
 	static Logger logger = Logger.getLogger(LoadXMLSQL.class);
+	
+	public Substation substationFrom;
+	public Substation substationTo;
 
 	/**
 	 * Instantiates a new AC line segment.
