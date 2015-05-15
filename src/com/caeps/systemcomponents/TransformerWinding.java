@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -27,6 +30,9 @@ public class TransformerWinding  extends ConductingEquipment{
 	/** The base voltage. */
 	public BaseVoltage baseVoltage;
 	
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(TransformerWinding.class);
+
 	/**
 	 * Instantiates a new transformer winding.
 	 *
@@ -48,10 +54,11 @@ public class TransformerWinding  extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the transformer winding.
+	 * Gets all transformer winding components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @param powertransformers the powertransformers
 	 * @param baseVoltages the base voltages
 	 * @return the transformer winding
@@ -100,8 +107,8 @@ public class TransformerWinding  extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading transformer winding details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading transformer winding details into the database. Check logs for more details.");
 		}
 		return transformerWindings;
 	}

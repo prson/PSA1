@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,6 +20,9 @@ public class PowerTransformer extends ConductingEquipment{
 	
 	/** The member of substation. */
 	public Substation memberOfSubstation;
+	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(PowerTransformer.class);
 	
 	/**
 	 * Instantiates a new power transformer.
@@ -31,10 +37,11 @@ public class PowerTransformer extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the power transformers.
+	 * Gets all power transformer components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @param substations the substations
 	 * @return the power transformers
 	 */
@@ -69,14 +76,14 @@ public class PowerTransformer extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading power transformer details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading power transformer details into the database. Check logs for more details.");
 		}
 		return powertransformers;
 	}
 
 	/**
-	 * Search power transformer.
+	 * Search for power transformer component with given rdfId.
 	 *
 	 * @param ab the ab
 	 * @param rdfId the rdf id

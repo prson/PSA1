@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 
 // TODO: Auto-generated Javadoc
@@ -18,6 +21,9 @@ public class RegulatingControl extends ConductingEquipment{
 
 	/** The target value. */
 	public double targetValue;
+	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(RegulatingControl.class);
 	
 	/**
 	 * Instantiates a new regulating control.
@@ -32,10 +38,11 @@ public class RegulatingControl extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the regulating control.
+	 * Gets all regulating control components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @return the regulating control
 	 */
 	static ArrayList<RegulatingControl> getRegulatingControl(Document doc, Connection conn){
@@ -65,14 +72,14 @@ public class RegulatingControl extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading regulating control details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading regulating control details into the database. Check logs for more details.");
 		}
 		return regulatingControls;
 	}
 	
 	/**
-	 * Search regulating control.
+	 * Search for regulating control component with given rdfId.
 	 *
 	 * @param ab the ab
 	 * @param rdfId the rdf id

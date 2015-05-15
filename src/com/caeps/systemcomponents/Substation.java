@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -18,6 +21,9 @@ public class Substation extends EquipmentContainer {
 	/** The region_rdf id. */
 	public String region_rdfID;
 
+	/** The logger. */
+	static Logger logger = Logger.getLogger(Substation.class);
+	
 	/**
 	 * Instantiates a new substation.
 	 *
@@ -31,10 +37,11 @@ public class Substation extends EquipmentContainer {
 	}
 	
 	/**
-	 * Gets the substations.
+	 * Gets all substation components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @return the substations
 	 */
 	static ArrayList<Substation> getSubstations(Document doc, Connection conn){
@@ -64,14 +71,14 @@ public class Substation extends EquipmentContainer {
 				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading substation details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading substation details into the database. Check logs for more details.");
 		}
 		return substations;
 	}
 	
 	/**
-	 * Search substation.
+	 * Search for substation component with given rdfID.
 	 *
 	 * @param substationsList the substations list
 	 * @param rdfId the rdf id

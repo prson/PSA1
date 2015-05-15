@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.caeps.gui.PSAnalysisPanel;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class VoltageLevel.
@@ -26,7 +28,7 @@ public class VoltageLevel extends EquipmentContainer {
 	private static Logger logger = Logger.getLogger(VoltageLevel.class);
 
 	/**
-	 * Instantiates a new voltage level object.
+	 * Instantiates a new voltage level.
 	 *
 	 * @param rdfId the rdf id
 	 * @param n the name
@@ -41,8 +43,8 @@ public class VoltageLevel extends EquipmentContainer {
 	}
 	
 	/**
-	 * Gets all voltage level objects from the CIM file and stores them in the 
-	 * internal data structure and database.
+	 * Gets all voltage level components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
 	 * @param doc the document
 	 * @param conn the connection
@@ -83,15 +85,14 @@ public class VoltageLevel extends EquipmentContainer {
 				LoadXMLSQL.powerSystemResources.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			logger.error("SQL Exception Error in loading voltage level objects from the CIM file", e);
-			
+			logger.error("SQL Exception Error in loading voltage level details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading voltage level details into the database. Check logs for more details.");
 		}
 		return voltageLevels;
 	}
 	
 	/**
-	 * Search for voltage level object with a given rdfID.
+	 * Search for voltage level component with a given rdfID.
 	 *
 	 * @param ab the ab
 	 * @param rdfId the rdf id

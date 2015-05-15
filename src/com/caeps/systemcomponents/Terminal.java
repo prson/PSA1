@@ -44,10 +44,11 @@ public class Terminal extends IdentifiedObject{
 	}
 	
 	/**
-	 * Gets the terminals.
+	 * Gets all terminal components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @param conductingEquipments the conducting equipments
 	 * @param connectivityNodes the connectivity nodes
 	 * @return the terminals

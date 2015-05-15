@@ -5,9 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.caeps.gui.PSAnalysisPanel;
 
 
 // TODO: Auto-generated Javadoc
@@ -31,6 +34,8 @@ public class SynchronousMachine extends ConductingEquipment{
 	/** The base voltage. */
 	public BaseVoltage baseVoltage;
 	
+	/** The logger. */
+	static Logger logger = Logger.getLogger(SynchronousMachine.class);
 	
 	/**
 	 * Instantiates a new synchronous machine.
@@ -55,10 +60,11 @@ public class SynchronousMachine extends ConductingEquipment{
 	}
 	
 	/**
-	 * Gets the synchronous machine.
+	 * Gets all synchronous machine components from the CIM file and returns them in an 
+	 * array list and stores them in the database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @param equipmentcontainers the equipmentcontainers
 	 * @param baseVoltages the base voltages
 	 * @param generatingUnits the generating units
@@ -119,8 +125,8 @@ public class SynchronousMachine extends ConductingEquipment{
 				LoadXMLSQL.conductingEquipments.add(ab);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading synchronous machine details into the database.", e);
+			PSAnalysisPanel.consoleArea.append("\nSQL Exception Error in loading synchronous machine details into the database. Check logs for more details.");
 		}
 		return synchronousMachines;
 	}
