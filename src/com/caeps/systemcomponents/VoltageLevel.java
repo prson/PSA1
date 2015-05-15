@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -21,11 +22,14 @@ public class VoltageLevel extends EquipmentContainer {
 	/** The member of substation. */
 	public Substation memberOfSubstation;
 
+	/** The logger. */
+	private static Logger logger = Logger.getLogger(VoltageLevel.class);
+
 	/**
-	 * Instantiates a new voltage level.
+	 * Instantiates a new voltage level object.
 	 *
 	 * @param rdfId the rdf id
-	 * @param n the n
+	 * @param n the name
 	 * @param baseVoltage the base voltage
 	 * @param memberOfSubstation the member of substation
 	 */
@@ -37,10 +41,11 @@ public class VoltageLevel extends EquipmentContainer {
 	}
 	
 	/**
-	 * Gets the voltage level.
+	 * Gets all voltage level objects from the CIM file and stores them in the 
+	 * internal data structure and database.
 	 *
-	 * @param doc the doc
-	 * @param conn the conn
+	 * @param doc the document
+	 * @param conn the connection
 	 * @param substations the substations
 	 * @param baseVoltages the base voltages
 	 * @return the voltage level
@@ -72,7 +77,6 @@ public class VoltageLevel extends EquipmentContainer {
 						baseVoltages, baseVoltageId);
 				Substation subst = Substation.searchSubstation(
 						substations, memOfSubstationID);
-				// System.out.println(baseVoltage.localName+subst.localName);
 				VoltageLevel ab = new VoltageLevel(refId, refName, baseVoltage, subst);
 				voltageLevels.add(ab);
 				LoadXMLSQL.equipmentContainers.add(ab);
@@ -80,13 +84,14 @@ public class VoltageLevel extends EquipmentContainer {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("SQL Exception Error in loading voltage level objects from the CIM file", e);
+			
 		}
 		return voltageLevels;
 	}
 	
 	/**
-	 * Search voltage level.
+	 * Search for voltage level object with a given rdfID.
 	 *
 	 * @param ab the ab
 	 * @param rdfId the rdf id
