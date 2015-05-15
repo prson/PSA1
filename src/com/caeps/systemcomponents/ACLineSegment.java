@@ -1,16 +1,12 @@
 package com.caeps.systemcomponents;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import com.caeps.gui.PSAnalysisPanel;
 
 
 // TODO: Auto-generated Javadoc

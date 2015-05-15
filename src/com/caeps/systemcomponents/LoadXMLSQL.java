@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
-import com.caeps.systemcomponents.*;
-
 
 /**
  * The Class LoadXMLSQL.

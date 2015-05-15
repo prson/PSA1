@@ -1,7 +1,5 @@
 package com.caeps.systemcomponents;
 
-import java.lang.Math.*;
-
 /**
  * TwoDArray is a data structure to represent a two-dimensional array
  * of complex numbers.  ie The result of applying the 2D FFT to an image.
@@ -296,7 +294,7 @@ public class TwoDArray{
     for(int j=0;j<height;++j){
       for(int i=0;i<width;++i){
 	i2=i+x;
-	j2=j+x;
+	j2=j+y;
 	if(i2>=width)i2=i2%width;
 	if(j2>=height)j2=j2%height;
 	output[i][j] = input[i2][j2];
@@ -316,7 +314,7 @@ public class TwoDArray{
     for(int j=0;j<height;++j){
       for(int i=0;i<width;++i){
 	i2=i+x;
-	j2=j+x;
+	j2=j+y;
 	if(i2>=width)i2=i2%width;
 	if(j2>=height)j2=j2%height;
 	output[i][j] = input[i2][j2];
