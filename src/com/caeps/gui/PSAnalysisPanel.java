@@ -19,16 +19,20 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
 
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import com.caeps.assign.ConnectToDB;
+import com.caeps.assign.Load;
 import com.caeps.assign.LoadDocument;
 import com.caeps.assign.LoadXMLSQL;
 import com.caeps.assign.Substation;
+import com.caeps.assign.SynchronousMachine;
 import com.caeps.assign.TwoDArray;
 
 public class PSAnalysisPanel extends JPanel {
@@ -106,9 +110,13 @@ public class PSAnalysisPanel extends JPanel {
 		getSubstationsButton.setPreferredSize(new Dimension(120,30));
 		
 		JButton getLoadsButton = new JButton("Get Loads");
+		GetLoadsMouseListener getLoadsMouseListener = new GetLoadsMouseListener();
+		getLoadsButton.addMouseListener(getLoadsMouseListener);
 		getLoadsButton.setPreferredSize(new Dimension(120,30));
 		
 		JButton getGensButton = new JButton("Get Generators");
+		GetGensMouseListener getGensMouseListener = new GetGensMouseListener();
+		getGensButton.addMouseListener(getGensMouseListener);
 		getGensButton.setPreferredSize(new Dimension(120,30));
 		
 		JPanel buttonPanel = new JPanel();
@@ -125,6 +133,7 @@ public class PSAnalysisPanel extends JPanel {
 		resultsArea = new JTextArea();
 		resultsArea.setPreferredSize(new Dimension(400, 200));
 		resultsArea.setLineWrap(true);
+		resultsArea.setEditable(false);
 		
 		JPanel resultsPanel = new JPanel();
 //		resultsPanel.setPreferredSize(new Dimension(super.getWidth()*1/2, 100));
@@ -136,14 +145,23 @@ public class PSAnalysisPanel extends JPanel {
 		performOpsPanel.add(resultsPanel);
 		
 		consoleArea = new JTextArea();
-		consoleArea.setPreferredSize(new Dimension(780, 120));
 		consoleArea.setForeground(Color.GREEN);
 		consoleArea.setBackground(Color.BLACK);
-		consoleArea.setText("Welcome!");
+		consoleArea.setEditable(false);
 		
+		DefaultCaret caret = (DefaultCaret)consoleArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+		JScrollPane scroll = new JScrollPane(consoleArea);
+	    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	    scroll.setPreferredSize(new Dimension(750, 100));
+	    
 		JPanel consolePanel = new JPanel();
 		consolePanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Console"),BorderFactory.createEmptyBorder(5,5,5,5)));
-		consolePanel.add(consoleArea);
+		consolePanel.add(scroll);
+		
+		consoleArea.append("Welcome!");
 		
 		JButton exitButton = new JButton("Exit");
 		ExitMouseListener exitMouseListener = new ExitMouseListener();
@@ -170,12 +188,12 @@ public class PSAnalysisPanel extends JPanel {
 					String.valueOf(connectionPasswordField.getPassword()));
 			if(conn != null){
 				consoleArea.setForeground(Color.GREEN);
-				consoleArea.setText("Congrats! Connection established.");
+				consoleArea.append("\nCongrats! Connection established.");
 //			connectionEstablished=true;
 			}
 			else{
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("Sorry! Connection not established, check the logs and try again.");
+				consoleArea.append("\nSorry! Connection not established, check the logs and try again.");
 			}
 		}
 		public void mouseEntered(MouseEvent e) {
@@ -198,23 +216,23 @@ public class PSAnalysisPanel extends JPanel {
 			{
 				if(conn != null){
 					consoleArea.setForeground(Color.GREEN);
-					consoleArea.setText("Congrats! File read. Loading it to the database.....");
+					consoleArea.append("\nCongrats! File read. Loading it to the database.....");
 					LoadXMLSQL.readFile(doc, conn);
 					
 				}
 				else{
 					consoleArea.setForeground(Color.RED);
-					consoleArea.setText("Ooopsss! File exists. But connection is not established. Please establish a connection and try again. Visit the logs for details");
+					consoleArea.append("\nOoopsss! File exists. But connection is not established. Please establish a connection and try again. Visit the logs for details");
 					doc = null;
 				}
 			}
 			else{
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("Sorry! File could not be read, check the logs and try again.");
+				consoleArea.append("\nSorry! File could not be read, check the logs and try again.");
 			}
 			
 			consoleArea.setForeground(Color.GREEN);
-			consoleArea.setText("Congrats! File read. Loaded in the database. Go ahead and perform operations!");
+			consoleArea.append("\nCongrats! File read. Loaded in the database. Go ahead and perform operations!");
 		}
 		public void mouseEntered(MouseEvent e) {
 		}
@@ -232,16 +250,16 @@ public class PSAnalysisPanel extends JPanel {
 			logger.debug("Inside calculate ybus listener");
 			if(conn == null){
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("The connection is not established. Please establish connection and load the file before calculating the ybus!");
+				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before calculating the ybus!");
 			}
 			else if(doc == null)
 			{
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("The document has not been read yet. Please load the file before calculating the ybus!");
+				consoleArea.append("\nThe document has not been read yet. Please load the file before calculating the ybus!");
 			}
 			else{
 				consoleArea.setForeground(Color.GREEN);
-				consoleArea.setText("Calculating Y bus...");
+				consoleArea.append("\nCalculating Y bus...");
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e1) {
@@ -251,7 +269,7 @@ public class PSAnalysisPanel extends JPanel {
 				TwoDArray ybus = LoadXMLSQL.ybus;
 				int numOfBuses = ybus.height;
 				logger.debug("Y Bus Matrix");
-				String result ="Y Bus =\n";
+				String result ="Y Bus Matrix (No. of Buses/ Substation="+numOfBuses+")\n\n";
 				for(int i = 0; i < numOfBuses; i++){
 					for(int j = 0; j < numOfBuses; j++){
 						String sign1 = (ybus.values[i][j].real>0)?("+"):("");
@@ -260,7 +278,7 @@ public class PSAnalysisPanel extends JPanel {
 					}
 					result = result + "\n";
 				}
-				consoleArea.setText("Y Bus calculated");
+				consoleArea.append("\nY Bus calculated");
 				resultsArea.setText(result);
 			}				
 		}
@@ -305,16 +323,16 @@ public class PSAnalysisPanel extends JPanel {
 			logger.debug("Inside get substation listener");
 			if(conn == null){
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("The connection is not established. Please establish connection and load the file before calculating the ybus!");
+				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before calculating the ybus!");
 			}
 			else if(doc == null)
 			{
 				consoleArea.setForeground(Color.RED);
-				consoleArea.setText("The document has not been read yet. Please load the file before calculating the ybus!");
+				consoleArea.append("\nThe document has not been read yet. Please load the file before calculating the ybus!");
 			}
 			else{
 				consoleArea.setForeground(Color.GREEN);
-				consoleArea.setText("Getting substations...");
+				consoleArea.append("\nGetting substations...");
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e1) {
@@ -324,11 +342,97 @@ public class PSAnalysisPanel extends JPanel {
 				ArrayList<Substation> substations = LoadXMLSQL.substations;
 				int numOfSubstations = substations.size();
 				logger.debug("Substations");
-				String result = "Substations =\nNo.    Name\n";
+				String result = "Substations \n\nNo.    Name\n";
 				for(int i = 0; i < numOfSubstations; i++){
 					result = result + (i+1) + "        " + substations.get(i).name + "\n";
 				}
-				consoleArea.setText("Substations retrieved");
+				consoleArea.append("\nSubstations retrieved");
+				resultsArea.setText(result);
+			}
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+	}
+	
+	class GetLoadsMouseListener implements MouseListener{
+		
+		public void mouseClicked(MouseEvent e) {
+			logger.debug("Inside get loads listener");
+			if(conn == null){
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the loads!");
+			}
+			else if(doc == null)
+			{
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the loads!");
+			}
+			else{
+				consoleArea.setForeground(Color.GREEN);
+				consoleArea.append("\nGetting loads...");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ArrayList<Load> loads = LoadXMLSQL.loads;
+				int numOfLoads = loads.size();
+				logger.debug("Getting Loads");
+				String result = "Loads \n\nNo.    Name                  Substation/Voltage           PFixed      QFixed\n";
+				for(int i = 0; i < numOfLoads; i++){
+					result = result + (i+1) + "        " + loads.get(i).name+ "        " + loads.get(i).memberOfEquipmentContainer.name+ "        " + loads.get(i).pfixed+ "        " + loads.get(i).qfixed+ "\n";
+				}
+				consoleArea.append("\nLoads retrieved");
+				resultsArea.setText(result);
+			}
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {
+		}
+		public void mousePressed(MouseEvent e) {
+		}
+	}
+	
+	class GetGensMouseListener implements MouseListener{
+		
+		public void mouseClicked(MouseEvent e) {
+			logger.debug("Inside get generators listener");
+			if(conn == null){
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the generators!");
+			}
+			else if(doc == null)
+			{
+				consoleArea.setForeground(Color.RED);
+				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the generators!");
+			}
+			else{
+				consoleArea.setForeground(Color.GREEN);
+				consoleArea.append("\nGetting generators...");
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				ArrayList<SynchronousMachine> gens = LoadXMLSQL.synchronousMachines;
+				int numOfGens = gens.size();
+				logger.debug("Getting Generators");
+				String result = "Generators \n\nNo.    Name                  ratedS        Substation/Voltage   \n";
+				for(int i = 0; i < numOfGens; i++){
+					result = result + (i+1) + "        " + gens.get(i).name+ "        " + gens.get(i).ratedS+ "        " + gens.get(i).memberOfEquipmentContainer.name+ "        " +"\n";
+				}
+				consoleArea.append("\nGenerators retrieved");
 				resultsArea.setText(result);
 			}
 		}

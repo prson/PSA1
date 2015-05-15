@@ -27,7 +27,8 @@ public class LoadXMLSQL {
 	public static TwoDArray ybus;
 	
 	public static ArrayList<Substation> substations;
-	
+	public static ArrayList<Load> loads;
+	public static ArrayList<SynchronousMachine> synchronousMachines;
 
 	/**
 	 * The main method.
@@ -51,10 +52,10 @@ public class LoadXMLSQL {
 					.getPowerTransformers(doc, conn, substations);
 			ArrayList<RegulatingControl> regulatingControls = RegulatingControl
 					.getRegulatingControl(doc, conn);
-			ArrayList<SynchronousMachine> synchronousMachines = SynchronousMachine
+			synchronousMachines = SynchronousMachine
 					.getSynchronousMachine(doc, conn, equipmentContainers,
 							baseVoltages, generatingUnits, regulatingControls);
-			ArrayList<Load> loads = Load.getLoad(doc, conn,
+			loads = Load.getLoad(doc, conn,
 					equipmentContainers, baseVoltages);
 			ArrayList<TransformerWinding> transformerWindings = TransformerWinding
 					.getTransformerWinding(doc, conn, powerTransformers,
