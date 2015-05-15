@@ -1,5 +1,9 @@
 package com.caeps.systemcomponents;
 
+import org.apache.log4j.Logger;
+
+import com.caeps.gui.PSAnalysisPanel;
+
 /**
  * Class representing a complex number.
  *
@@ -14,6 +18,10 @@ public class ComplexNumber{
    * The imaginary part of the complex number.
    */
   public double imaginary;
+  
+	/** The logger. */
+	static Logger logger = Logger.getLogger(ComplexNumber.class);
+
 
   /**
    * Default no-arg constructor.
@@ -117,8 +125,15 @@ public class ComplexNumber{
     ComplexNumber z3 = new ComplexNumber();
     double n = z2.cNorm();
     
+    try{
     z3.real = ((z1.real*z2.real) + (z1.imaginary*z2.imaginary))/n;
     z3.imaginary = ((z2.real*z1.imaginary) - (z1.real*z2.imaginary))/n;
+    }
+    catch (Exception e){
+    	logger.error("Exception occured while dividing two complex numbers (check value fo r and x)",e);
+		PSAnalysisPanel.consoleArea.append("\nError occured while dividing two complex numbers (chekc value of r and x), check the logs for more details.");
+    }
+    
     return z3;
   }
 
