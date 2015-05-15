@@ -138,7 +138,7 @@ public class PSAnalysisPanel extends JPanel {
 		buttonPanel.add(getLinesButton);
 		
 		resultsArea = new JTextArea();
-		resultsArea.setPreferredSize(new Dimension(400, 200));
+		resultsArea.setPreferredSize(new Dimension(500, 200));
 		resultsArea.setLineWrap(true);
 		resultsArea.setEditable(false);
 		
@@ -152,7 +152,7 @@ public class PSAnalysisPanel extends JPanel {
 		performOpsPanel.add(resultsPanel);
 		
 		consoleArea = new JTextArea();
-		consoleArea.setForeground(Color.GREEN);
+		consoleArea.setForeground(Color.WHITE);
 		consoleArea.setBackground(Color.BLACK);
 		consoleArea.setEditable(false);
 		
@@ -162,7 +162,7 @@ public class PSAnalysisPanel extends JPanel {
 		JScrollPane scroll = new JScrollPane(consoleArea);
 	    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	    scroll.setPreferredSize(new Dimension(750, 100));
+	    scroll.setPreferredSize(new Dimension(800, 100));
 	    
 		JPanel consolePanel = new JPanel();
 		consolePanel.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Console"),BorderFactory.createEmptyBorder(5,5,5,5)));
@@ -188,18 +188,28 @@ public class PSAnalysisPanel extends JPanel {
 	class EstablishConnectionMouseListener implements MouseListener{
 		
 		public void mouseClicked(MouseEvent e) {
+			if (conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+					logger.error("Error in closing previous connection.",e1);
+					consoleArea.append("\nError in closing previous connection. Check logs for details.");
+				}
+			}
 			conn = null;
 			doc = null;
-			logger.debug("Inside establosh connection listener");
+			logger.debug("Inside establish connection listener");
 			conn = (new ConnectToDB()).establishConnection(connectionUrlField.getText(), connectionUsernameField.getText(),
 					String.valueOf(connectionPasswordField.getPassword()));
 			if(conn != null){
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nCongrats! Connection established.");
 //			connectionEstablished=true;
 			}
 			else{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nSorry! Connection not established, check the logs and try again.");
 			}
 		}
@@ -222,24 +232,22 @@ public class PSAnalysisPanel extends JPanel {
 			if(doc != null)
 			{
 				if(conn != null){
-					consoleArea.setForeground(Color.GREEN);
+//					consoleArea.setForeground(Color.GREEN);
 					consoleArea.append("\nCongrats! File read. Loading it to the database.....");
 					LoadXMLSQL.readFile(doc, conn);
-					
+//					consoleArea.setForeground(Color.GREEN);
+					consoleArea.append("\nCongrats! File read. Loaded to the database. Go ahead and perform operations!");
 				}
 				else{
-					consoleArea.setForeground(Color.RED);
+//					consoleArea.setForeground(Color.RED);
 					consoleArea.append("\nOoopsss! File exists. But connection is not established. Please establish a connection and try again. Visit the logs for details");
 					doc = null;
 				}
 			}
 			else{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nSorry! File could not be read, check the logs and try again.");
-			}
-			
-			consoleArea.setForeground(Color.GREEN);
-			consoleArea.append("\nCongrats! File read. Loaded in the database. Go ahead and perform operations!");
+			}			
 		}
 		public void mouseEntered(MouseEvent e) {
 		}
@@ -256,27 +264,21 @@ public class PSAnalysisPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			logger.debug("Inside calculate ybus listener");
 			if(conn == null){
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before calculating the ybus!");
 			}
 			else if(doc == null)
 			{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe document has not been read yet. Please load the file before calculating the ybus!");
 			}
 			else{
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nCalculating Y bus...");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				TwoDArray ybus = LoadXMLSQL.ybus;
 				int numOfBuses = ybus.height;
 				logger.debug("Y Bus Matrix");
-				String result ="Y Bus Matrix (No. of Buses/ Substation="+numOfBuses+")\n\n";
+				String result ="Y Bus Matrix (No. of Buses/Substations = "+numOfBuses+")\n\n";
 				for(int i = 0; i < numOfBuses; i++){
 					for(int j = 0; j < numOfBuses; j++){
 						String sign1 = (ybus.values[i][j].real>0)?("+"):("");
@@ -329,23 +331,17 @@ public class PSAnalysisPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			logger.debug("Inside get substation listener");
 			if(conn == null){
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before calculating the ybus!");
 			}
 			else if(doc == null)
 			{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe document has not been read yet. Please load the file before calculating the ybus!");
 			}
 			else{
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nGetting substations...");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				ArrayList<Substation> substations = LoadXMLSQL.substations;
 				int numOfSubstations = substations.size();
 				logger.debug("Substations");
@@ -372,27 +368,21 @@ public class PSAnalysisPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			logger.debug("Inside get loads listener");
 			if(conn == null){
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the loads!");
 			}
 			else if(doc == null)
 			{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the loads!");
 			}
 			else{
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nGetting loads...");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				ArrayList<Load> loads = LoadXMLSQL.loads;
 				int numOfLoads = loads.size();
 				logger.debug("Getting Loads");
-				String result = "Loads \n\nNo.    Name                  Substation/Voltage           PFixed      QFixed\n";
+				String result = "Loads \n\nNo.    Name                 Substation/Voltage          PFixed      QFixed\n";
 				for(int i = 0; i < numOfLoads; i++){
 					result = result + (i+1) + "        " + loads.get(i).name+ "        " + loads.get(i).memberOfEquipmentContainer.name+ "        " + loads.get(i).pfixed+ "        " + loads.get(i).qfixed+ "\n";
 				}
@@ -415,27 +405,21 @@ public class PSAnalysisPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			logger.debug("Inside get generators listener");
 			if(conn == null){
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the generators!");
 			}
 			else if(doc == null)
 			{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the generators!");
 			}
 			else{
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nGetting generators...");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				ArrayList<SynchronousMachine> gens = LoadXMLSQL.synchronousMachines;
 				int numOfGens = gens.size();
 				logger.debug("Getting Generators");
-				String result = "Generators \n\nNo.    Name                  ratedS        Substation/Voltage   \n";
+				String result = "Generators \n\nNo.    Name                 RatedS        Substation/Voltage   \n";
 				for(int i = 0; i < numOfGens; i++){
 					result = result + (i+1) + "        " + gens.get(i).name+ "        " + gens.get(i).ratedS+ "        " + gens.get(i).memberOfEquipmentContainer.name+ "        " +"\n";
 				}
@@ -458,23 +442,17 @@ public class PSAnalysisPanel extends JPanel {
 		public void mouseClicked(MouseEvent e) {
 			logger.debug("Inside get lines listener");
 			if(conn == null){
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe connection is not established. Please establish connection and load the file before getting the lines!");
 			}
 			else if(doc == null)
 			{
-				consoleArea.setForeground(Color.RED);
+//				consoleArea.setForeground(Color.RED);
 				consoleArea.append("\nThe document has not been read yet. Please load the file before getting the lines!");
 			}
 			else{
-				consoleArea.setForeground(Color.GREEN);
+//				consoleArea.setForeground(Color.GREEN);
 				consoleArea.append("\nGetting lines...");
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				ArrayList<ACLineSegment> lines= LoadXMLSQL.lineSegments;
 				int numOfLines= lines.size();
 				logger.debug("Getting Lines");

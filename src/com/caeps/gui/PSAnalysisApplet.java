@@ -15,7 +15,7 @@ public class PSAnalysisApplet extends JApplet{
 	
 	public void init(){
 		PSAnalysisPanel psAnalysisPanel=new PSAnalysisPanel();
-		setSize(800, 600);
+		setSize(850, 600);
 		add(psAnalysisPanel);
 		
 	}

@@ -83,12 +83,12 @@ public class LoadXMLSQL {
 		}
 
 		finally {
-			try {
-				conn.close();
-				logger.debug("Closing the database connection");
-			} catch (SQLException e) {
-				logger.error("Unable to close the database connection", e);
-			}
+//			try {
+//				conn.close();
+//				logger.debug("Closing the database connection");
+//			} catch (SQLException e) {
+//				logger.error("Unable to close the database connection", e);
+//			}
 		}
 	}
 	

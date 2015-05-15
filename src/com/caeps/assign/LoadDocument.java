@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -15,7 +16,9 @@ import org.xml.sax.SAXException;
  * The Class LoadDocument.
  */
 public class LoadDocument {
-	
+
+	private static Logger logger = Logger.getLogger(LoadDocument.class);
+
 	/**
 	 * Builds the document.
 	 *
@@ -30,7 +33,8 @@ public class LoadDocument {
 			doc = docBuilder.parse(file);
 		} catch (SAXException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			logger.error("SAX Exception while reading file", e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
